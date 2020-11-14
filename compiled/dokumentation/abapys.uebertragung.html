@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module abapys.uebertragung</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.uebertragung</strong></big></big></font></td
+><td align=right valign=bottom
+></td></tr></table>
+    <p><tt>uebertragung.py&nbsp;&nbsp;&nbsp;v0.4&nbsp;(2020-09)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="abapys.uebertragung.html#FieldOutputValue">FieldOutputValue</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FieldOutputValue">class <strong>FieldOutputValue</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Mini-Klasse&nbsp;zur&nbsp;Erstellung&nbsp;von&nbsp;FieldOutputValues.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="FieldOutputValue-__init__"><strong>__init__</strong></a>(self, precision, data<font color="#909090">=None</font>, dataDouble<font color="#909090">=None</font>, type<font color="#909090">=None</font>, elementLabel<font color="#909090">=None</font>, nodeLabel<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="FieldOutputValue-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-KonstanteAnfangsloesungFuerSet"><strong>KonstanteAnfangsloesungFuerSet</strong></a>(modell, instname, setname, ausgabewerte)</dt><dd><tt>Erstelle&nbsp;einen&nbsp;Initial&nbsp;Condition&nbsp;Solution&nbsp;Eintrag&nbsp;im&nbsp;Keyword&nbsp;Block&nbsp;des&nbsp;Modells&nbsp;namens&nbsp;mdbname.<br>
+In&nbsp;diesem&nbsp;Block&nbsp;werden&nbsp;allen&nbsp;Elementen&nbsp;aus&nbsp;dem&nbsp;Set&nbsp;setname&nbsp;des&nbsp;Instanz&nbsp;instname&nbsp;die&nbsp;uebergebenen<br>
+Werte&nbsp;ausgabewerte&nbsp;als&nbsp;Anfangsloesung&nbsp;zugewiesen.&nbsp;Im&nbsp;Keyword&nbsp;Block&nbsp;wird&nbsp;dazu&nbsp;ein&nbsp;Verweis&nbsp;auf&nbsp;eine<br>
+Datei&nbsp;&lt;mdbname&gt;_sdv_init.add&nbsp;verwiesen,&nbsp;die&nbsp;angelegt&nbsp;und&nbsp;mit&nbsp;den&nbsp;Werten&nbsp;beschrieben&nbsp;wird.</tt></dd></dl>
+ <dl><dt><a name="-ZielwertquaderEinlesen"><strong>ZielwertquaderEinlesen</strong></a>(dateiname, numKoordinaten, numVar, knotenwerte<font color="#909090">=False</font>)</dt><dd><tt>Liest&nbsp;aus&nbsp;einer&nbsp;csv-Datei&nbsp;namens&nbsp;dateiname&nbsp;alle&nbsp;Zeilen&nbsp;ein.&nbsp;In&nbsp;jeder&nbsp;Zeile&nbsp;werden<br>
+numKoordinaten&nbsp;Eintraege&nbsp;als&nbsp;Koordinaten&nbsp;erwartet&nbsp;(d.h.&nbsp;2&nbsp;oder&nbsp;3)&nbsp;und&nbsp;die&nbsp;restlichen&nbsp;Werte&nbsp;werden<br>
+als&nbsp;Ergebnisse&nbsp;an&nbsp;diesen&nbsp;Koordinaten&nbsp;betrachtet.&nbsp;Mit&nbsp;2&nbsp;Koordinaten&nbsp;werden&nbsp;Elemente&nbsp;aus&nbsp;vier<br>
+Knoten&nbsp;angenommen,&nbsp;mit&nbsp;3&nbsp;Koordinaten&nbsp;aus&nbsp;acht.<br>
+&nbsp;<br>
+Falls&nbsp;knotenwerte=True&nbsp;werden&nbsp;die&nbsp;Koordinaten&nbsp;als&nbsp;Knotenkoordinaten&nbsp;und&nbsp;die&nbsp;Ergebnisse&nbsp;an&nbsp;den<br>
+Knotenkoordinaten&nbsp;interpretiert.&nbsp;Andernfalls&nbsp;werden&nbsp;die&nbsp;Koordinaten&nbsp;als&nbsp;Elementpunkte&nbsp;betrachtet,<br>
+um&nbsp;die&nbsp;mithilfe&nbsp;der&nbsp;Nachbarelementpunkte&nbsp;die&nbsp;Elementgrenzen&nbsp;(Knotenkoordinaten)&nbsp;bestimmt&nbsp;werden.<br>
+&nbsp;<br>
+Erwartet&nbsp;jeweils&nbsp;die&nbsp;gleiche&nbsp;Anzahl&nbsp;an&nbsp;Werten&nbsp;fuer&nbsp;jeden&nbsp;Vektor&nbsp;einer&nbsp;Koordinatenrichtung,&nbsp;um<br>
+daraus&nbsp;ohne&nbsp;weitere&nbsp;Informationen&nbsp;quaderfoermige&nbsp;Elemente&nbsp;zu&nbsp;generieren&nbsp;(fuer&nbsp;knotenweise=True).<br>
+Fuer&nbsp;knotenweise=False&nbsp;sollte&nbsp;zusaetzlich&nbsp;jeweils&nbsp;ein&nbsp;konstanter&nbsp;Abstand&nbsp;zwischen&nbsp;den&nbsp;Werten&nbsp;pro<br>
+Koordinatenrichtung&nbsp;vorliegen,&nbsp;da&nbsp;ansonsten&nbsp;die&nbsp;Ergebnisse&nbsp;nicht&nbsp;am&nbsp;tatsaechlichen&nbsp;Mittelpunkt<br>
+definiert&nbsp;sind&nbsp;(aber&nbsp;so&nbsp;interpretiert&nbsp;werden).<br>
+&nbsp;<br>
+Gibt&nbsp;[Koordinaten,&nbsp;Elemente,&nbsp;Ergebnisse]&nbsp;zurueck.</tt></dd></dl>
+ <dl><dt><a name="-ZielwertquaderErstellen"><strong>ZielwertquaderErstellen</strong></a>(dateiname, xwerte, ywerte, zwerte, ergebnisfunktion)</dt><dd><tt>Erstelle&nbsp;eine&nbsp;Ausgabedatei&nbsp;namens&nbsp;dateiname&nbsp;mit&nbsp;Ausgabegroessen&nbsp;fuer&nbsp;alle&nbsp;uebergebenen&nbsp;Werte.<br>
+Dabei&nbsp;werden&nbsp;xwerte,&nbsp;ywerte&nbsp;und&nbsp;zwerte&nbsp;Listen&nbsp;mit&nbsp;streng&nbsp;monoton&nbsp;zunehmende&nbsp;oder&nbsp;abnehmende<br>
+Punktkoordinaten&nbsp;erwartet.&nbsp;Fuer&nbsp;jede&nbsp;Kombination&nbsp;von&nbsp;Koordinaten&nbsp;aus&nbsp;den&nbsp;drei&nbsp;Vektoren&nbsp;wird&nbsp;mit<br>
+der&nbsp;uebergebenen&nbsp;ergebnisfunktion&nbsp;eine&nbsp;Ausgabe&nbsp;berechnet.<br>
+&nbsp;<br>
+ergebnisfunktion&nbsp;kann&nbsp;eine&nbsp;beliebige&nbsp;Funktion&nbsp;sein,&nbsp;die&nbsp;jedoch&nbsp;ein&nbsp;Argument&nbsp;punktkoordinaten&nbsp;als<br>
+Liste&nbsp;mit&nbsp;drei&nbsp;Eintraegen&nbsp;akzeptieren&nbsp;und&nbsp;eine&nbsp;Liste&nbsp;zurueckgeben&nbsp;muss<br>
+&nbsp;<br>
+Jede&nbsp;Kombination&nbsp;von&nbsp;Punktkoordinaten&nbsp;und&nbsp;deren&nbsp;Rueckgabewerte&nbsp;von&nbsp;ergebnisfunktion&nbsp;werden&nbsp;in<br>
+eine&nbsp;Zeile&nbsp;der&nbsp;Ausgabedatei&nbsp;geschrieben.</tt></dd></dl>
+ <dl><dt><a name="-Zustandsuebertragung"><strong>Zustandsuebertragung</strong></a>(session, odbname, odbinstname, variablenliste, modell, mdbinstname, mdbknoten<font color="#909090">=[]</font>, odbknoten<font color="#909090">=[]</font>, step<font color="#909090">=-1</font>, frame<font color="#909090">=-1</font>)</dt><dd><tt>Uebertrage&nbsp;den&nbsp;Zustand&nbsp;aus&nbsp;einer&nbsp;odb&nbsp;namens&nbsp;odbname&nbsp;auf&nbsp;ein&nbsp;in&nbsp;der&nbsp;aktuellen&nbsp;session&nbsp;geladenes<br>
+Modell&nbsp;modell.&nbsp;Dazu&nbsp;wird&nbsp;jeden&nbsp;in&nbsp;variablenliste&nbsp;uebergebene&nbsp;Variable&nbsp;an&nbsp;jedem&nbsp;Knoten&nbsp;bzw.<br>
+Element&nbsp;(je&nbsp;nach&nbsp;Typ)&nbsp;der&nbsp;odbinstname&nbsp;aus&nbsp;dem&nbsp;angegebenen&nbsp;step&nbsp;und&nbsp;frame&nbsp;ausgelesen&nbsp;und&nbsp;als<br>
+Anfangsloesungen&nbsp;von&nbsp;den&nbsp;Koordinaten&nbsp;der&nbsp;odbelemente&nbsp;oder&nbsp;odbknoten&nbsp;auf&nbsp;die&nbsp;Koordinaten&nbsp;der<br>
+mdbknoten&nbsp;in&nbsp;der&nbsp;Assembly-Instanz&nbsp;namens&nbsp;mdbinstname&nbsp;übertragen.&nbsp;Da&nbsp;die&nbsp;Position&nbsp;der&nbsp;Knoten&nbsp;nicht<br>
+uebereinstimmen&nbsp;muss,&nbsp;wird&nbsp;eine&nbsp;lineare&nbsp;Interpolation&nbsp;der&nbsp;Werte&nbsp;aus&nbsp;der&nbsp;odb-Datei&nbsp;auf&nbsp;die&nbsp;Knoten<br>
+des&nbsp;neuen&nbsp;Modells&nbsp;vorgenommen.<br>
+&nbsp;<br>
+Fuer&nbsp;eine&nbsp;Zustandsuebertragung&nbsp;auf&nbsp;ein&nbsp;gleichartiges&nbsp;Modell&nbsp;(gleiche&nbsp;Offsets&nbsp;und&nbsp;Geometrien)&nbsp;ist<br>
+es&nbsp;nicht&nbsp;noetig,&nbsp;mdbknoten&nbsp;und&nbsp;odbknoten&nbsp;zusaetzlich&nbsp;zu&nbsp;uebergeben.&nbsp;Wenn&nbsp;die&nbsp;Geometrieen&nbsp;aber<br>
+verschoben&nbsp;sind&nbsp;(anderes&nbsp;Nulloffset&nbsp;o.ae.),&nbsp;dann&nbsp;bietet&nbsp;sich&nbsp;eine&nbsp;Transformation&nbsp;der&nbsp;Koordinaten<br>
+an&nbsp;(bspw.&nbsp;mit&nbsp;der&nbsp;Funktion&nbsp;Knotentransformation).&nbsp;Die&nbsp;aktualisierten&nbsp;mdbknoten&nbsp;oder/und&nbsp;odbknoten<br>
+muessen&nbsp;dann&nbsp;entsprechend&nbsp;uebergeben&nbsp;werden.<br>
+&nbsp;<br>
+Gibt&nbsp;[gewichtungKnotenLabels,&nbsp;gewichtungKnotenWerte,&nbsp;bezugsElemente]&nbsp;zurueck.<br>
+&nbsp;<br>
+Es&nbsp;wird&nbsp;2D&nbsp;-&gt;&nbsp;2D&nbsp;und&nbsp;3D&nbsp;-&gt;&nbsp;3D&nbsp;unterstuetzt,&nbsp;aber&nbsp;nicht&nbsp;gemischt.&nbsp;Fuer&nbsp;2D-Elemente&nbsp;sind&nbsp;Dreiecke<br>
+und&nbsp;Vierecke&nbsp;zulaessig,&nbsp;fuer&nbsp;3D-Elemente&nbsp;Tetraeder&nbsp;und&nbsp;Hexahedrons.&nbsp;Die&nbsp;Unterscheidung&nbsp;wird&nbsp;am<br>
+Elementnamen&nbsp;getroffen:&nbsp;Alle&nbsp;Elemente&nbsp;mit&nbsp;3D&nbsp;im&nbsp;Namen&nbsp;zaehlen&nbsp;zu&nbsp;den&nbsp;3D-Elementen&nbsp;(bspw.&nbsp;C3D8R).<br>
+&nbsp;&nbsp;&nbsp;<br>
+Wichtig:&nbsp;Alle&nbsp;Elemente&nbsp;des&nbsp;parts&nbsp;muessen&nbsp;den&nbsp;gleichen&nbsp;Elementyp&nbsp;haben.</tt></dd></dl>
+ <dl><dt><a name="-Zustandszuweisung"><strong>Zustandszuweisung</strong></a>(session, modell, zielkoordinaten, zielelemente, zielwerte, mdbinstname, mdbknoten<font color="#909090">=[]</font>, variablentyp<font color="#909090">=['SDV']</font>)</dt><dd><tt>Weise&nbsp;die&nbsp;zielwerte&nbsp;an&nbsp;den&nbsp;zielkoordinaten&nbsp;bze.&nbsp;zielelemente&nbsp;einem&nbsp;in&nbsp;der&nbsp;aktuellen&nbsp;session<br>
+geladenem&nbsp;Modell&nbsp;modell&nbsp;zu&nbsp;als&nbsp;Anfangsloesung&nbsp;fuer&nbsp;variablentyp&nbsp;SDV&nbsp;zu.<br>
+&nbsp;<br>
+Dazu&nbsp;wird&nbsp;fuer&nbsp;die&nbsp;in&nbsp;variablentyp&nbsp;gelistete&nbsp;Variable&nbsp;an&nbsp;jedem&nbsp;Knoten&nbsp;bzw.<br>
+Element&nbsp;(je&nbsp;nach&nbsp;Typ)&nbsp;mit&nbsp;den&nbsp;Koordinaten&nbsp;zielkoordinaten&nbsp;die&nbsp;Anfangsloesungen&nbsp;aus&nbsp;zielwerte&nbsp;auf<br>
+die&nbsp;Koordinaten&nbsp;der&nbsp;mdbknoten&nbsp;in&nbsp;der&nbsp;Assembly-Instanz&nbsp;namens&nbsp;mdbinstname&nbsp;übertragen.&nbsp;Da&nbsp;die<br>
+Position&nbsp;der&nbsp;Knoten&nbsp;nicht&nbsp;uebereinstimmen&nbsp;muss,&nbsp;wird&nbsp;eine&nbsp;lineare&nbsp;Interpolation&nbsp;der&nbsp;zielwerte&nbsp;auf<br>
+die&nbsp;Knoten&nbsp;des&nbsp;neuen&nbsp;Modells&nbsp;vorgenommen.<br>
+&nbsp;<br>
+Wenn&nbsp;variablentyp&nbsp;an&nbsp;Knoten&nbsp;definiert&nbsp;ist,&nbsp;wird&nbsp;zielkoordinaten&nbsp;als&nbsp;Knotenkoordinaten&nbsp;und<br>
+zielwerte&nbsp;als&nbsp;Knotenwerte&nbsp;interpretiert&nbsp;und&nbsp;zugewiesen.&nbsp;Falls&nbsp;variablentyp&nbsp;an&nbsp;Elementen&nbsp;definiert<br>
+ist,&nbsp;werden&nbsp;zielkoordinaten&nbsp;als&nbsp;Koordinaten&nbsp;der&nbsp;Elementmittelpunkte&nbsp;definiert&nbsp;und&nbsp;zielwerte&nbsp;als<br>
+Elementwerte.<br>
+&nbsp;<br>
+Fuer&nbsp;eine&nbsp;Zustandszuweisung&nbsp;ohne&nbsp;zusaetzliche&nbsp;Transformation&nbsp;der&nbsp;Positionen&nbsp;(bspw.&nbsp;Verschiebung<br>
+oder&nbsp;Rotation),&nbsp;ist&nbsp;es&nbsp;nicht&nbsp;noetig,&nbsp;mdbknoten&nbsp;zusaetzlich&nbsp;zu&nbsp;uebergeben.&nbsp;Andernfalls&nbsp;bietet&nbsp;sich<br>
+eine&nbsp;Transformation&nbsp;der&nbsp;Koordinaten&nbsp;an&nbsp;(bspw.&nbsp;mit&nbsp;der&nbsp;Funktion&nbsp;Knotentransformation).&nbsp;Die<br>
+aktualisierten&nbsp;mdbknoten&nbsp;muessen&nbsp;dann&nbsp;entsprechend&nbsp;uebergeben&nbsp;werden.<br>
+&nbsp;<br>
+Gibt&nbsp;[gewichtungKnotenLabels,&nbsp;gewichtungKnotenWerte,&nbsp;bezugsElemente]&nbsp;zurueck.<br>
+&nbsp;<br>
+Wichtig:&nbsp;Alle&nbsp;Elemente&nbsp;des&nbsp;parts&nbsp;muessen&nbsp;den&nbsp;gleichen&nbsp;Elementyp&nbsp;haben.</tt></dd></dl>
+</td></tr></table>
+</body></html>

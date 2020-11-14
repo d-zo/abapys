@@ -1,0 +1,144 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module abapys.ausgabe</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.ausgabe</strong></big></big></font></td
+><td align=right valign=bottom
+></td></tr></table>
+    <p><tt>ausgabe.py&nbsp;&nbsp;&nbsp;v1.2&nbsp;(2020-10)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-BauteileEinfaerben"><strong>BauteileEinfaerben</strong></a>(viewport, zuweisungen, standardfarbe<font color="#909090">='#000000'</font>, odb<font color="#909090">=True</font>)</dt><dd><tt>Faerbt&nbsp;das&nbsp;im&nbsp;uebergebenen&nbsp;viewport&nbsp;dargestellte&nbsp;Modell&nbsp;nach&nbsp;Instanzen&nbsp;ein.&nbsp;Mit&nbsp;zuweisungen<br>
+wird&nbsp;eine&nbsp;Liste&nbsp;erwartet&nbsp;mit&nbsp;[[Instanzname,&nbsp;Farbe],&nbsp;[...]]&nbsp;wobei,&nbsp;die&nbsp;Farbe&nbsp;im&nbsp;Hexadezimal-Format<br>
+zu&nbsp;geben&nbsp;ist&nbsp;(bspw.&nbsp;ist&nbsp;rot&nbsp;'#FF0000').&nbsp;Alle&nbsp;Instanzen,&nbsp;die&nbsp;nicht&nbsp;in&nbsp;der&nbsp;zuweisung&nbsp;gelistet&nbsp;sind,<br>
+werden&nbsp;mit&nbsp;standardfarbe&nbsp;eingefaerbt.&nbsp;Um&nbsp;die&nbsp;korrekte&nbsp;Zuweisung&nbsp;zu&nbsp;ermoeglichen,&nbsp;muss&nbsp;&nbsp;mit&nbsp;dem<br>
+Flag&nbsp;odb&nbsp;angegeben&nbsp;werden,&nbsp;ob&nbsp;es&nbsp;sich&nbsp;um&nbsp;eine&nbsp;odb&nbsp;oder&nbsp;mdb&nbsp;(odb=False)&nbsp;handelt.</tt></dd></dl>
+ <dl><dt><a name="-BildSpeichern"><strong>BildSpeichern</strong></a>(dateiname, session, dateityp<font color="#909090">='png'</font>, bildgroesse<font color="#909090">=[]</font>, hintergrund<font color="#909090">=False</font>)</dt><dd><tt>Speichern&nbsp;die&nbsp;Darstellung&nbsp;des&nbsp;aktiven&nbsp;Viewports&nbsp;aus&nbsp;session&nbsp;als&nbsp;Bilddatei&nbsp;mit&nbsp;dem&nbsp;Namen<br>
+dateiname.&nbsp;Optional&nbsp;kann&nbsp;der&nbsp;dateityp&nbsp;('png'&nbsp;oder&nbsp;'eps')&nbsp;und&nbsp;die&nbsp;bildgroesse&nbsp;(als&nbsp;Vektor&nbsp;mit<br>
+Bildbreite&nbsp;und&nbsp;Bildhoehe&nbsp;in&nbsp;Pixeln)&nbsp;angepasst&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-DehnungsInvarianteAlsFieldOutput"><strong>DehnungsInvarianteAlsFieldOutput</strong></a>(name, session, odbname, beschreibung<font color="#909090">='Dehungsinvariante'</font>)</dt><dd><tt>Fuege&nbsp;einen&nbsp;neuen&nbsp;FieldOutput&nbsp;namens&nbsp;name&nbsp;zur&nbsp;Ausgabedatei&nbsp;odbname&nbsp;der&nbsp;session&nbsp;mit&nbsp;der<br>
+Dehnungsinvariante&nbsp;hinzu.&nbsp;Optional&nbsp;kann&nbsp;die&nbsp;Beschreibung&nbsp;angepasst&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-FieldOutputSpeichern"><strong>FieldOutputSpeichern</strong></a>(dateiname, session, odbname, fieldOutput, step, frame)</dt><dd><tt>Ermittle&nbsp;die&nbsp;Ausgabevariable&nbsp;fieldOutput&nbsp;im&nbsp;angeforderten&nbsp;step&nbsp;und&nbsp;frame<br>
+(beides&nbsp;Zahlenwerte)&nbsp;der&nbsp;Datei&nbsp;odbname&nbsp;aus&nbsp;der&nbsp;aktuellen&nbsp;session.&nbsp;Speichere<br>
+das&nbsp;Ergebnis&nbsp;unter&nbsp;dateiname.erg.</tt></dd></dl>
+ <dl><dt><a name="-FieldOutputVorbereiten"><strong>FieldOutputVorbereiten</strong></a>(session, odbname, var, varposition)</dt><dd><tt>Extrahiere&nbsp;die&nbsp;XY-Daten&nbsp;eines&nbsp;Field-Outputs&nbsp;aus&nbsp;odb&nbsp;namens&nbsp;odbname&nbsp;aus&nbsp;session&nbsp;mit&nbsp;dem&nbsp;Namen<br>
+var=[Variablenname,&nbsp;Komponente]&nbsp;und&nbsp;varposition=(Instanzname,&nbsp;[Label(s)]).<br>
+&nbsp;<br>
+Wenn&nbsp;mit&nbsp;varposition&nbsp;mehr&nbsp;als&nbsp;ein&nbsp;Label&nbsp;in&nbsp;der&nbsp;Liste&nbsp;uebergeben&nbsp;wird,&nbsp;stimmt&nbsp;die&nbsp;Reihenfolge&nbsp;der<br>
+erzeugten&nbsp;Daten&nbsp;im&nbsp;Allgemeinen&nbsp;nicht&nbsp;mit&nbsp;der&nbsp;Reihenfolge&nbsp;der&nbsp;Labels&nbsp;in&nbsp;der&nbsp;Liste&nbsp;uebereinstimmen.</tt></dd></dl>
+ <dl><dt><a name="-HistoryOutputVorbereiten"><strong>HistoryOutputVorbereiten</strong></a>(session, odbname, var, varname)</dt><dd><tt>Extrahiere&nbsp;die&nbsp;XY-Daten&nbsp;eines&nbsp;History-Outputs&nbsp;aus&nbsp;einer&nbsp;odb&nbsp;namens&nbsp;odbname&nbsp;aus&nbsp;session&nbsp;mit&nbsp;dem<br>
+exakten&nbsp;Namen&nbsp;var&nbsp;oder&nbsp;var=[Instanzname,&nbsp;Ausgabevariable].&nbsp;Im&nbsp;letzten&nbsp;Fall&nbsp;wird&nbsp;der&nbsp;Name&nbsp;des<br>
+dazugehoerigen&nbsp;Outputs&nbsp;automatisch&nbsp;bestimmt.&nbsp;Falls&nbsp;Ausgaben&nbsp;fuer&nbsp;das&nbsp;ganze&nbsp;Modell&nbsp;ohne&nbsp;komplette<br>
+Namensnennung&nbsp;erforderlich&nbsp;sind,&nbsp;kann&nbsp;Instanzname&nbsp;auch&nbsp;leer&nbsp;bleiben&nbsp;(bspw.&nbsp;['',&nbsp;'ETOTAL']).<br>
+Speichere&nbsp;die&nbsp;Daten&nbsp;intern&nbsp;unter&nbsp;dem&nbsp;Namen&nbsp;varname.</tt></dd></dl>
+ <dl><dt><a name="-LetzterOutputStepUndFrame"><strong>LetzterOutputStepUndFrame</strong></a>(session, odbname)</dt><dd><tt>Ermittle&nbsp;aus&nbsp;der&nbsp;Ausgabedatei&nbsp;odbname&nbsp;in&nbsp;der&nbsp;aktuellen&nbsp;session&nbsp;den&nbsp;letzten&nbsp;Step&nbsp;und<br>
+darin&nbsp;den&nbsp;letzten&nbsp;Frame,&nbsp;in&nbsp;dem&nbsp;Outputs&nbsp;geschrieben&nbsp;worden&nbsp;sind.</tt></dd></dl>
+ <dl><dt><a name="-Modellansicht"><strong>Modellansicht</strong></a>(session, ansicht<font color="#909090">=''</font>, rechts<font color="#909090">=1</font>, oben<font color="#909090">=2</font>)</dt><dd><tt>Aendere&nbsp;die&nbsp;Ansicht&nbsp;des&nbsp;aktiven&nbsp;Viewports&nbsp;der&nbsp;session&nbsp;entweder&nbsp;durch&nbsp;die&nbsp;interne&nbsp;ansicht<br>
+(d.h.&nbsp;'Front',&nbsp;'Back',&nbsp;'Top',&nbsp;'Bottom',&nbsp;'Left'&nbsp;oder&nbsp;'Right')&nbsp;oder&nbsp;durch&nbsp;Angabe&nbsp;der&nbsp;Achsen&nbsp;rechts<br>
+und&nbsp;oben&nbsp;(x&nbsp;=&nbsp;+/-1,&nbsp;y&nbsp;=&nbsp;+/-2,&nbsp;z&nbsp;=&nbsp;+/-3).<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Front&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bottom&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;--+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+(rechts=1,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;(rechts=-1,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;(rechts=1,&nbsp;oben=-3)&nbsp;&nbsp;&nbsp;&nbsp;(rechts=1,&nbsp;oben=3)&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<br>
+Left&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iso&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;--+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x<br>
+(rechts=3,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;(rechts=-3,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;--nicht&nbsp;ohne&nbsp;zusaetzliche&nbsp;Drehung---</tt></dd></dl>
+ <dl><dt><a name="-MultiBildSpeichern"><strong>MultiBildSpeichern</strong></a>(dateiname, session, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=[]</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Titel&nbsp;dateiname&nbsp;aus&nbsp;dem&nbsp;aktiven&nbsp;Viewport&nbsp;der&nbsp;Session&nbsp;session&nbsp;und&nbsp;odb<br>
+namens&nbsp;odbname.&nbsp;Optional&nbsp;kann&nbsp;statt&nbsp;einem&nbsp;Bild&nbsp;mehrere&nbsp;Teilbilder&nbsp;nach&nbsp;der&nbsp;Anordnung&nbsp;anordnung<br>
+ausgegeben&nbsp;werden.&nbsp;Falls&nbsp;SINGLE&nbsp;und&nbsp;OVERLAY-Modus&nbsp;gespeichert&nbsp;werden&nbsp;sollen,&nbsp;kann&nbsp;mehrfachmodus<br>
+aktiviert&nbsp;werden.<br>
+Optional&nbsp;kann&nbsp;mit&nbsp;autozoom&nbsp;der&nbsp;Zoom&nbsp;innerhalb&nbsp;der&nbsp;Funktion&nbsp;abhaengig&nbsp;vom&nbsp;uebergebenen&nbsp;sichtbaren<br>
+Bereich&nbsp;und&nbsp;der&nbsp;Aufteilung&nbsp;in&nbsp;anordnung&nbsp;durchgefuehrt&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-MultiVideobilderSpeichern"><strong>MultiVideobilderSpeichern</strong></a>(dateiname, session, odbname, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=[]</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Basisnamen&nbsp;dateiname&nbsp;aus&nbsp;der&nbsp;Ausgabedatei&nbsp;odbname,&nbsp;die&nbsp;im&nbsp;aktiven<br>
+Viewport&nbsp;der&nbsp;session&nbsp;dargestellt&nbsp;ist.&nbsp;Optional&nbsp;koennen&nbsp;statt&nbsp;einem&nbsp;Bild&nbsp;mehrere&nbsp;Teilbilder&nbsp;in&nbsp;der<br>
+gegebenen&nbsp;anordnung&nbsp;(Teilbilder&nbsp;horizontal&nbsp;und&nbsp;vertikal)&nbsp;ausgegeben&nbsp;werden.&nbsp;Optional&nbsp;kann<br>
+ausserdem&nbsp;ein&nbsp;zeitstempel&nbsp;uebergeben&nbsp;werden,&nbsp;der&nbsp;nur&nbsp;im&nbsp;Teilbild&nbsp;zeitstempelkanal&nbsp;angezeigt&nbsp;wird.<br>
+Auch&nbsp;eine&nbsp;moeglicherweise&nbsp;sichtbare&nbsp;Legende&nbsp;wird&nbsp;nur&nbsp;im&nbsp;legendenkanal&nbsp;dargestellt.&nbsp;Dabei&nbsp;hat&nbsp;das<br>
+linke&nbsp;obere&nbsp;Teilbild&nbsp;den&nbsp;Wert&nbsp;0&nbsp;und&nbsp;nimmt&nbsp;zeilenweise&nbsp;von&nbsp;links&nbsp;nach&nbsp;rechts&nbsp;zu.&nbsp;Falls<br>
+mehrfachmodus&nbsp;aktiviert&nbsp;ist,&nbsp;werden&nbsp;Bilder&nbsp;im&nbsp;SINGLE-&nbsp;und&nbsp;OVERLAY-Modus&nbsp;gespeichert.<br>
+Optional&nbsp;kann&nbsp;mit&nbsp;autozoom&nbsp;der&nbsp;Zoom&nbsp;innerhalb&nbsp;der&nbsp;Funktion&nbsp;abhaengig&nbsp;vom&nbsp;uebergebenen&nbsp;sichtbaren<br>
+Bereich&nbsp;und&nbsp;der&nbsp;Aufteilung&nbsp;in&nbsp;anordnung&nbsp;durchgefuert&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-PlotFormatieren"><strong>PlotFormatieren</strong></a>(xyplot, chart, titel<font color="#909090">=''</font>, xlabel<font color="#909090">=''</font>, ylabel<font color="#909090">=''</font>, xlim<font color="#909090">=[]</font>, ylim<font color="#909090">=[]</font>)</dt><dd><tt>Plot&nbsp;xyplot&nbsp;und&nbsp;Darstellung&nbsp;chart&nbsp;verschoenern&nbsp;und&nbsp;an&nbsp;typisches&nbsp;Format&nbsp;anpassen.&nbsp;Optional<br>
+koennen&nbsp;titel,&nbsp;xlabel&nbsp;und&nbsp;ylabel&nbsp;als&nbsp;Text&nbsp;definiert&nbsp;werden.&nbsp;Ausserdem&nbsp;kann&nbsp;der<br>
+Darstellungsbereich&nbsp;der&nbsp;beiden&nbsp;Achsen&nbsp;durch&nbsp;einen&nbsp;Vektor&nbsp;mit&nbsp;Minimal-&nbsp;und&nbsp;Maximalwert&nbsp;beschraenkt<br>
+werden&nbsp;(ohne&nbsp;Angabe&nbsp;erfolgt&nbsp;Autoskalierung).</tt></dd></dl>
+ <dl><dt><a name="-PlotLegendeFormatieren"><strong>PlotLegendeFormatieren</strong></a>(session, chart, curvedata, legendeneintraege, zuerstFarbenwechseln<font color="#909090">=True</font>, kurvenFarben<font color="#909090">=[]</font>, kurvenStile<font color="#909090">=[]</font>)</dt><dd><tt>Die&nbsp;Legende&nbsp;von&nbsp;chart&nbsp;aus&nbsp;session&nbsp;mit&nbsp;den&nbsp;Kurven&nbsp;curvedata&nbsp;wird&nbsp;mit&nbsp;den&nbsp;Werten&nbsp;aus<br>
+legendeneintraege&nbsp;geschrieben.&nbsp;Optional&nbsp;koennen&nbsp;auch&nbsp;kurvenFarben&nbsp;und&nbsp;kurvenStile,&nbsp;sowie&nbsp;deren<br>
+Abfolge&nbsp;mit&nbsp;zuerstFarbenwechseln&nbsp;geaendert&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-PlotOutput"><strong>PlotOutput</strong></a>(session, odbname, yvar, yvarposition<font color="#909090">=[]</font>, ylabel<font color="#909090">=''</font>, ylimit<font color="#909090">=[]</font>, posydir<font color="#909090">=True</font>, xvar<font color="#909090">=[]</font>, xvarposition<font color="#909090">=[]</font>, xlabel<font color="#909090">=''</font>, xlimit<font color="#909090">=[]</font>, posxdir<font color="#909090">=True</font>, titel<font color="#909090">=''</font>, legendeneintraege<font color="#909090">=[]</font>, plothinzufuegen<font color="#909090">=False</font>)</dt><dd><tt>Plotte&nbsp;die&nbsp;angegebenen&nbsp;yvar&nbsp;der&nbsp;Auswahl&nbsp;yvarposition&nbsp;ueber&nbsp;xvar&nbsp;an&nbsp;xvarposition&nbsp;der&nbsp;odb&nbsp;namens<br>
+odbname&nbsp;aus&nbsp;session.&nbsp;Falls&nbsp;xvar&nbsp;nicht&nbsp;definiert&nbsp;ist,&nbsp;wird&nbsp;diese&nbsp;Achse&nbsp;zur&nbsp;Zeitachse.&nbsp;Es&nbsp;koennen<br>
+mehrere&nbsp;Daten&nbsp;(bspw.&nbsp;mehrere&nbsp;Elemente)&nbsp;fuer&nbsp;die&nbsp;y-Richtung&nbsp;uebergeben&nbsp;werden,&nbsp;aber&nbsp;fuer&nbsp;die<br>
+x-Richtung&nbsp;darf&nbsp;es&nbsp;nur&nbsp;ein&nbsp;einziger&nbsp;Datensatz&nbsp;sein.<br>
+&nbsp;<br>
+Optional&nbsp;koennen&nbsp;auch&nbsp;xlabel&nbsp;und&nbsp;ylabel&nbsp;zur&nbsp;Achsenbeschriftung&nbsp;sowie&nbsp;xlimit&nbsp;und&nbsp;ylimit&nbsp;zur<br>
+Beschraenkung&nbsp;der&nbsp;Zeichenebene&nbsp;uebergeben&nbsp;werden.&nbsp;Die&nbsp;Richtung&nbsp;der&nbsp;Werte&nbsp;kann&nbsp;optional&nbsp;ueber<br>
+posxdir&nbsp;oder&nbsp;posydir&nbsp;invertiert&nbsp;werden.&nbsp;Optional&nbsp;kann&nbsp;ausserdem&nbsp;ein&nbsp;titel&nbsp;fuer&nbsp;den&nbsp;Plot&nbsp;und&nbsp;die<br>
+Bezeichnung&nbsp;der&nbsp;legendeneintraege&nbsp;uebergeben&nbsp;werden.&nbsp;Falls&nbsp;bereits&nbsp;ein&nbsp;Plot&nbsp;existiert,&nbsp;steuert<br>
+plothinzufuegen,&nbsp;ob&nbsp;er&nbsp;ueberschrieben&nbsp;oder&nbsp;ergaenzt&nbsp;wird.<br>
+&nbsp;<br>
+Erwartet&nbsp;wird&nbsp;bei&nbsp;FieldOuptut-Variablen&nbsp;ein&nbsp;Vektor&nbsp;var=(Variablenname,&nbsp;Komponente)&nbsp;und&nbsp;entweder<br>
+die&nbsp;Variablenposition&nbsp;mit&nbsp;yvarposition=(odb-Setname)&nbsp;oder&nbsp;(Instanzname,&nbsp;[Label(s)]).<br>
+&nbsp;<br>
+Bei&nbsp;HistoryOutput-Variablen&nbsp;wird&nbsp;nur&nbsp;ein&nbsp;Vektor&nbsp;var=([Instanzname,&nbsp;Ausgabevariable])&nbsp;oder<br>
+var=(Ausgabenname)&nbsp;erwartet&nbsp;(varposition&nbsp;entfaellt).&nbsp;Im&nbsp;Fall&nbsp;var=([Instanzname,&nbsp;Ausgabevariable])<br>
+wird&nbsp;der&nbsp;Name&nbsp;des&nbsp;dazugehoerigen&nbsp;Outputs&nbsp;automatisch&nbsp;bestimmt.&nbsp;Falls&nbsp;Ausgaben&nbsp;fuer&nbsp;das&nbsp;ganze<br>
+Modell&nbsp;ohne&nbsp;komplette&nbsp;Namensnennung&nbsp;erforderlich&nbsp;sind,&nbsp;kann&nbsp;Instanzname&nbsp;auch&nbsp;leer&nbsp;bleiben<br>
+(bspw.&nbsp;['',&nbsp;'ETOTAL']).</tt></dd></dl>
+ <dl><dt><a name="-PlotXYDaten"><strong>PlotXYDaten</strong></a>(session, xyListe, ylimit<font color="#909090">=[]</font>, ylabel<font color="#909090">=''</font>, xlimit<font color="#909090">=[]</font>, xlabel<font color="#909090">=''</font>, titel<font color="#909090">=''</font>, legendeneintraege<font color="#909090">=[]</font>, plothinzufuegen<font color="#909090">=False</font>)</dt><dd><tt>Plotte&nbsp;die&nbsp;in&nbsp;der&nbsp;xyListe&nbsp;angegebenen&nbsp;XYDaten.&nbsp;Optional&nbsp;koennen&nbsp;xlabel&nbsp;und&nbsp;ylabel&nbsp;zur<br>
+Achsenbeschriftung&nbsp;sowie&nbsp;xlimit&nbsp;und&nbsp;ylimit&nbsp;zur&nbsp;Beschraenkung&nbsp;der&nbsp;Zeichenebene&nbsp;uebergeben&nbsp;werden.<br>
+Optional&nbsp;kann&nbsp;ausserdem&nbsp;ein&nbsp;titel&nbsp;fuer&nbsp;den&nbsp;Plot&nbsp;und&nbsp;die&nbsp;Bezeichnung&nbsp;der&nbsp;legendeneintraege<br>
+uebergeben&nbsp;werden.&nbsp;Falls&nbsp;bereits&nbsp;ein&nbsp;Plot&nbsp;existiert,&nbsp;steuert&nbsp;plothinzufuegen,&nbsp;ob&nbsp;er<br>
+ueberschrieben&nbsp;oder&nbsp;ergaenzt&nbsp;wird.</tt></dd></dl>
+ <dl><dt><a name="-SkalarenFieldOutputErstellen"><strong>SkalarenFieldOutputErstellen</strong></a>(name, session, odbname, referenzAusgabe, beschreibung<font color="#909090">=''</font>, bedingung<font color="#909090">='data11'</font>)</dt><dd><tt>Fuege&nbsp;einen&nbsp;neuen&nbsp;FieldOutput&nbsp;name&nbsp;zur&nbsp;Ausgabedatei&nbsp;odbname&nbsp;der&nbsp;session&nbsp;mit&nbsp;Daten&nbsp;aus<br>
+referenzAusgabe&nbsp;hinzu.&nbsp;Die&nbsp;Daten&nbsp;im&nbsp;FieldOutput&nbsp;referenzAusgabe&nbsp;koennen&nbsp;skalare&nbsp;Werte&nbsp;oder<br>
+Tensoren&nbsp;sein.&nbsp;Optional&nbsp;kann&nbsp;die&nbsp;Beschreibung&nbsp;angepasst&nbsp;werden.&nbsp;Optional&nbsp;kann&nbsp;ausserdem&nbsp;mit<br>
+bedingung&nbsp;ein&nbsp;Kommando&nbsp;zur&nbsp;Kombination&nbsp;der&nbsp;Eintraege&nbsp;ausgefuehrt&nbsp;werden.&nbsp;Fuer&nbsp;einen&nbsp;Ausdruck&nbsp;in<br>
+bedingung&nbsp;entsprechen&nbsp;[data11,&nbsp;data22,&nbsp;data33,&nbsp;data12,&nbsp;data13,&nbsp;data23]&nbsp;den&nbsp;sechs&nbsp;Eintraegen<br>
+eines&nbsp;Tensorfeldes.&nbsp;Bei&nbsp;einem&nbsp;Skalar&nbsp;entspricht&nbsp;data11&nbsp;dem&nbsp;Zahlenwert.<br>
+&nbsp;<br>
+Fuer&nbsp;mathematische&nbsp;Zusammenhaenge&nbsp;stehen&nbsp;die&nbsp;Funktionen&nbsp;sqrt,&nbsp;sin,&nbsp;cos,&nbsp;tan,&nbsp;asin,&nbsp;acos,&nbsp;atan<br>
+zur&nbsp;Verfuegung.</tt></dd></dl>
+ <dl><dt><a name="-SpannungsSpurAlsFieldOutput"><strong>SpannungsSpurAlsFieldOutput</strong></a>(name, session, odbname, spannungstyp<font color="#909090">='SVAVG'</font>, beschreibung<font color="#909090">='Spur des Spannungstensors'</font>)</dt><dd><tt>Fuege&nbsp;einen&nbsp;neuen&nbsp;FieldOutput&nbsp;namens&nbsp;name&nbsp;zur&nbsp;Ausgabedatei&nbsp;odbname&nbsp;der&nbsp;session&nbsp;mit&nbsp;der<br>
+Spur&nbsp;des&nbsp;Spannungstensors&nbsp;hinzu.&nbsp;Als&nbsp;spannungstyp&nbsp;kann&nbsp;zwischen&nbsp;'S'&nbsp;und&nbsp;'SVAVG'<br>
+unterschieden&nbsp;werden.&nbsp;Optional&nbsp;kann&nbsp;ausserdem&nbsp;die&nbsp;Beschreibung&nbsp;angepasst&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-StandardFarben"><strong>StandardFarben</strong></a>()</dt><dd><tt>Gebe&nbsp;den&nbsp;Vektor&nbsp;mit&nbsp;den&nbsp;Standardfarben&nbsp;und&nbsp;deren&nbsp;Reihenfolge&nbsp;in&nbsp;Abaqus&nbsp;aus.</tt></dd></dl>
+ <dl><dt><a name="-Ueberlagerung"><strong>Ueberlagerung</strong></a>(session, ebenen, versteckteSets<font color="#909090">=[]</font>, versteckteInstances<font color="#909090">=[]</font>, verschiebung<font color="#909090">=0.0</font>)</dt><dd><tt>Erstelle&nbsp;mehrere&nbsp;Darstellungsebenen&nbsp;im&nbsp;aktiven&nbsp;Viewport&nbsp;der&nbsp;session&nbsp;mit&nbsp;den&nbsp;Bezeichnungen<br>
+ebenen.&nbsp;Basierend&nbsp;auf&nbsp;der&nbsp;Anzeige&nbsp;beim&nbsp;Aufruf&nbsp;der&nbsp;Funktion&nbsp;koennen&nbsp;zusaetzliche&nbsp;Sets&nbsp;(mit&nbsp;vollem<br>
+Instance-Pfad)&nbsp;oder/und&nbsp;Instances&nbsp;je&nbsp;Ebene&nbsp;versteckt&nbsp;werden.&nbsp;Optional&nbsp;kann&nbsp;eine&nbsp;globale<br>
+Verschiebung&nbsp;der&nbsp;Ebenen&nbsp;zueinander&nbsp;definiert&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-VideobilderSpeichern"><strong>VideobilderSpeichern</strong></a>(dateiname, session, odbname, dateityp<font color="#909090">='png'</font>, numzahlen<font color="#909090">=3</font>, zeitstempel<font color="#909090">=None</font>, startstep<font color="#909090">=0</font>, startframe<font color="#909090">=0</font>, stopstep<font color="#909090">=-1</font>, stopframe<font color="#909090">=-1</font>, erstedateinummer<font color="#909090">=None</font>)</dt><dd><tt>Gebe&nbsp;im&nbsp;aktiven&nbsp;viewport&nbsp;von&nbsp;session&nbsp;alle&nbsp;frames&nbsp;aus&nbsp;allen&nbsp;steps&nbsp;als&nbsp;Bilddaten&nbsp;mit&nbsp;dem<br>
+Basisnamen&nbsp;name&nbsp;im&nbsp;Format&nbsp;dateityp&nbsp;aus.&nbsp;Bildbreite&nbsp;und&nbsp;Bildhoehe&nbsp;wird&nbsp;von&nbsp;der&nbsp;aktuellen<br>
+Einstellung&nbsp;uebernommen.<br>
+&nbsp;<br>
+Um&nbsp;nur&nbsp;eine&nbsp;Unterauswahl&nbsp;an&nbsp;Bildern&nbsp;zu&nbsp;speichern&nbsp;kann&nbsp;ein&nbsp;Intervall&nbsp;mit&nbsp;startstep/startframe<br>
+sowie&nbsp;stopstep/stopframe&nbsp;definiert&nbsp;werden.&nbsp;Vorallem&nbsp;dann&nbsp;kann&nbsp;es&nbsp;sich&nbsp;auch&nbsp;anbieten,&nbsp;die<br>
+Dateiausgabe&nbsp;nicht&nbsp;bei&nbsp;ihrem&nbsp;natuerlichen&nbsp;Start,&nbsp;sondern&nbsp;bei&nbsp;0&nbsp;starten&nbsp;zu&nbsp;lassen,&nbsp;indem<br>
+erstedateinummer=0&nbsp;gesetzt&nbsp;wird.</tt></dd></dl>
+ <dl><dt><a name="-ViewportBemassung"><strong>ViewportBemassung</strong></a>(db, viewport, bezeichnung, punkt1, punkt2, offset, groesse<font color="#909090">=180</font>)</dt><dd><tt>Bemasse&nbsp;eine&nbsp;Laenge&nbsp;eines&nbsp;Bauteils&nbsp;einer&nbsp;odb&nbsp;(db=odb.userData)&nbsp;oder&nbsp;mdb&nbsp;(db=mdb)&nbsp;im&nbsp;viewport<br>
+zwischen&nbsp;punkt1&nbsp;und&nbsp;punkt2.&nbsp;Die&nbsp;Bemassung&nbsp;benoetigt&nbsp;ein&nbsp;offset&nbsp;zur&nbsp;Bemassungslinie&nbsp;und&nbsp;bekommt<br>
+intern&nbsp;die&nbsp;angegebene&nbsp;bezeichnung&nbsp;zugewiesen.&nbsp;Optional&nbsp;kann&nbsp;die&nbsp;groesse&nbsp;der&nbsp;Schrift&nbsp;der&nbsp;Bemassung<br>
+angepasst&nbsp;werden.&nbsp;Gibt&nbsp;die&nbsp;Namen&nbsp;der&nbsp;vier&nbsp;erzeugten&nbsp;Annotationen&nbsp;zurueck.</tt></dd></dl>
+ <dl><dt><a name="-XYDatenAnElementen"><strong>XYDatenAnElementen</strong></a>(session, odbname, odbinstname, labelliste, zeitpunkt, var, name, beschreibung<font color="#909090">=''</font>)</dt><dd><tt>Erstelle&nbsp;xyDaten&nbsp;namens&nbsp;name&nbsp;(mit&nbsp;beschreibung)&nbsp;aus&nbsp;Daten&nbsp;der&nbsp;in&nbsp;der&nbsp;aktuellen&nbsp;session<br>
+geoeffneten&nbsp;odb&nbsp;namens&nbsp;odbname.&nbsp;Die&nbsp;xyDaten&nbsp;werden&nbsp;aus&nbsp;dem&nbsp;FieldOutput&nbsp;der&nbsp;Variable<br>
+var=[Variablenname,&nbsp;Komponente]&nbsp;fuer&nbsp;den&nbsp;uebergebenen&nbsp;zeitpunkt&nbsp;aus&nbsp;odbinstname&nbsp;erstellt.<br>
+Abhaengig&nbsp;davon,&nbsp;ob&nbsp;var&nbsp;an&nbsp;Elementen&nbsp;oder&nbsp;Knoten&nbsp;definiert&nbsp;ist,&nbsp;wird&nbsp;in&nbsp;labelliste&nbsp;auch&nbsp;eine<br>
+Auflistung&nbsp;von&nbsp;Knotenlabels&nbsp;oder&nbsp;Elementlabels&nbsp;erwartet,&nbsp;fuer&nbsp;die&nbsp;die&nbsp;xyDaten&nbsp;erstellt&nbsp;werden<br>
+sollen.</tt></dd></dl>
+ <dl><dt><a name="-XYDatenSpeichern"><strong>XYDatenSpeichern</strong></a>(dateiname, session, xydatenname, nachkommastellen<font color="#909090">=4</font>)</dt><dd><tt>Speichert&nbsp;den&nbsp;Datensatz&nbsp;xydatenname&nbsp;des&nbsp;aktiven&nbsp;Viewports&nbsp;von&nbsp;session&nbsp;als&nbsp;csv-Datei&nbsp;dateiname.<br>
+Optional&nbsp;kann&nbsp;die&nbsp;Anzahl&nbsp;an&nbsp;nachkommastellen&nbsp;angepasst&nbsp;werden.</tt></dd></dl>
+</td></tr></table>
+</body></html>

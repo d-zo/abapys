@@ -1,0 +1,111 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module abapys.boden</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.boden</strong></big></big></font></td
+><td align=right valign=bottom
+></td></tr></table>
+    <p><tt>boden.py&nbsp;&nbsp;&nbsp;v1.9&nbsp;(2020-10)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Boden"><strong>Boden</strong></a>(modell, name, bodentiefe, voidhoehe, bodenbereich, gittergroessen, gitter_boden_vertikal, schichten, schichtmaterial, restmaterial, extrasets<font color="#909090">=False</font>, netz<font color="#909090">=True</font>, euler<font color="#909090">=True</font>, xypartition<font color="#909090">=[True, True]</font>, partition_durchziehen<font color="#909090">=False</font>, viertel<font color="#909090">=4</font>, rotationsprofilpunkte<font color="#909090">=None</font>)</dt><dd><tt>Erzeuge&nbsp;einen&nbsp;Untergrund&nbsp;name&nbsp;im&nbsp;uebergebenen&nbsp;modell.&nbsp;Die&nbsp;folgende&nbsp;Skizze&nbsp;gibt&nbsp;einen<br>
+Ueberblick&nbsp;ueber&nbsp;die&nbsp;verwendeten&nbsp;geometrischen&nbsp;Groessen&nbsp;und&nbsp;Bestandteile&nbsp;intern&nbsp;verwendeter<br>
+Bezeichnungen&nbsp;(bspw.&nbsp;fuer&nbsp;Sets),&nbsp;wobei&nbsp;in&nbsp;der&nbsp;Darstellung&nbsp;alle&nbsp;bodenbereiche&nbsp;als&nbsp;rund&nbsp;angenommen<br>
+werden.&nbsp;Gibt&nbsp;[part&lt;name&gt;,&nbsp;inst&lt;name&gt;]&nbsp;zurueck.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bodenbereich[0]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("Aussen")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_|________________|_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;bodenbereich[1:-1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;("Uebergaenge")|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_|__________|_&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;bodenbereich[-1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;("Innen")|&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;_|____|_&nbsp;|&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..------..<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..&nbsp;..----..&nbsp;..&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;.--.&nbsp;&nbsp;\&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;___|_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\&nbsp;|\&nbsp;|'--'|&nbsp;/|&nbsp;/|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'+&nbsp;'+----+'&nbsp;+'&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|''+----+''|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;voidhoehe&nbsp;(nur&nbsp;bei&nbsp;euler=True)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|..+----+..|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;.+&nbsp;.+----+.&nbsp;+.&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/&nbsp;|/&nbsp;|.--.|&nbsp;\|&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;___|__________________|_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\&nbsp;|\&nbsp;|'--'|&nbsp;/|&nbsp;/|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'+&nbsp;'+----+'&nbsp;+'&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|''+----+''|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;schichten[-1]&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|..+----+..|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;("Schichten")&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;.+&nbsp;.+----+.&nbsp;+.&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/&nbsp;|/&nbsp;|.--.|&nbsp;\|&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;___|_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;bodentiefe<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|\&nbsp;|\&nbsp;|'--'|&nbsp;/|&nbsp;/|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;'+&nbsp;'+----+'&nbsp;+'&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|''+----+''|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;("Unten")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|..+----+..|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;.+&nbsp;.+----+.&nbsp;+.&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|/&nbsp;|/&nbsp;|.--.|&nbsp;\|&nbsp;\|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;___|__________________|_<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;\&nbsp;&nbsp;'--'&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''&nbsp;''----''&nbsp;''<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''------''<br>
+&nbsp;<br>
+Der&nbsp;Vektor&nbsp;bodenbereich&nbsp;besteht&nbsp;entweder&nbsp;aus&nbsp;Eintraegen&nbsp;mit&nbsp;einem&nbsp;Element&nbsp;(Radius&nbsp;fuer&nbsp;runde<br>
+Geometrie/Partition)&nbsp;oder&nbsp;zwei&nbsp;Elementen&nbsp;(halbe&nbsp;Kantenlaenge&nbsp;fuer&nbsp;rechteckige&nbsp;Geometrie&nbsp;oder<br>
+Partition).&nbsp;Zur&nbsp;Vernetzung&nbsp;werden&nbsp;entsprechend&nbsp;viele&nbsp;Eintraege&nbsp;wie&nbsp;in&nbsp;schichten&nbsp;fuer<br>
+gittergroessen&nbsp;benoetigt.&nbsp;Dabei&nbsp;kann&nbsp;entweder&nbsp;ein&nbsp;Wert&nbsp;gegeben&nbsp;werden&nbsp;(konstante&nbsp;Gittergroesse)<br>
+oder&nbsp;zwei&nbsp;(linear&nbsp;veraendernde&nbsp;Gittergroesse).&nbsp;gitter_boden_vertikal&nbsp;gibt&nbsp;die&nbsp;vertikale<br>
+Gitterfeinheit&nbsp;fuer&nbsp;den&nbsp;Schichtenbereich&nbsp;und&nbsp;das&nbsp;Void&nbsp;an.&nbsp;Fuer&nbsp;jeden&nbsp;Eintrag&nbsp;in&nbsp;schichten&nbsp;muss<br>
+auch&nbsp;ein&nbsp;Material&nbsp;in&nbsp;schichtmaterial&nbsp;definiert&nbsp;sein.&nbsp;Zusaetzlich&nbsp;ist&nbsp;ein&nbsp;restmaterial,&nbsp;bspw.&nbsp;fuer<br>
+den&nbsp;Bereich&nbsp;unterhalb&nbsp;der&nbsp;Schichten,&nbsp;anzugeben.&nbsp;Optional&nbsp;koennen&nbsp;extrasets&nbsp;erstellt&nbsp;werden.<br>
+Optional&nbsp;kann&nbsp;der&nbsp;Boden&nbsp;als&nbsp;euler-Koerper&nbsp;oder&nbsp;Lagrange-Loerper&nbsp;ohne&nbsp;void-Bereich)&nbsp;erstellt<br>
+werden.&nbsp;Partitionen&nbsp;werden&nbsp;mit&nbsp;einer&nbsp;Standardpartitionierung&nbsp;in&nbsp;x/y-Richtung&nbsp;erzeugt.&nbsp;Das<br>
+Verhalten&nbsp;kann&nbsp;mit&nbsp;xypartition&nbsp;explizit&nbsp;deaktiviert&nbsp;werden.&nbsp;Optional&nbsp;kann&nbsp;nur&nbsp;Viertel-&nbsp;oder<br>
+Halbmodell&nbsp;mit&nbsp;dem&nbsp;Parameter&nbsp;viertel&nbsp;erzeugt&nbsp;werden&nbsp;(nur&nbsp;die&nbsp;Werte&nbsp;1,2&nbsp;und&nbsp;4&nbsp;werden<br>
+unterstuetzt).&nbsp;Falls&nbsp;nur&nbsp;ein&nbsp;halbes/viertel&nbsp;Modell&nbsp;erzeugt&nbsp;wird,&nbsp;werden&nbsp;Partitionen&nbsp;in&nbsp;der<br>
+Schnittebene&nbsp;nicht&nbsp;erzeugt&nbsp;(unabhaengig&nbsp;von&nbsp;den&nbsp;Angaben&nbsp;in&nbsp;xypartition).<br>
+Rechteckige&nbsp;Partitionen&nbsp;ziehen&nbsp;sich&nbsp;mit&nbsp;partition_durchziehen=True&nbsp;durch&nbsp;das&nbsp;komplette&nbsp;Modell,<br>
+standardmaessig&nbsp;aber&nbsp;nur&nbsp;bis&nbsp;zur&nbsp;naechstgroesseren&nbsp;Partition&nbsp;(ggfs.&nbsp;mit&nbsp;Verbindungen).<br>
+&nbsp;<br>
+Zusaetzlich&nbsp;erlaubt&nbsp;die&nbsp;Uebergabe&nbsp;von&nbsp;rotationsprofilpunkte&nbsp;(x-y-Punktkoordinaten)&nbsp;die&nbsp;Erstellung<br>
+eines&nbsp;3D-Profils&nbsp;auf&nbsp;Basis&nbsp;der&nbsp;Zeichnung&nbsp;(aus&nbsp;den&nbsp;Punkten)&nbsp;und&nbsp;einer&nbsp;Rotation&nbsp;um&nbsp;die&nbsp;vertikale<br>
+Achse&nbsp;der&nbsp;Zeichnung&nbsp;(experimentell).</tt></dd></dl>
+ <dl><dt><a name="-BodenmaterialUndSectionErstellen"><strong>BodenmaterialUndSectionErstellen</strong></a>(modell, verwendeteMaterialien, verfuegbareMaterialien, userroutine<font color="#909090">=''</font>, numDepVar<font color="#909090">=0</font>, euler<font color="#909090">=True</font>)</dt><dd><tt>Erstelle&nbsp;im&nbsp;modell&nbsp;je&nbsp;nach&nbsp;euler&nbsp;eine&nbsp;EulerianSection&nbsp;oder&nbsp;mehrere&nbsp;HomogeneousSolidSections<br>
+mit&nbsp;allen&nbsp;verwendeteMaterialien.&nbsp;Die&nbsp;Abfolge&nbsp;der&nbsp;Materialschichten&nbsp;wird&nbsp;mit&nbsp;der&nbsp;Reihenfolge&nbsp;in<br>
+verfuegbareMaterialien&nbsp;festgelegt.&nbsp;Falls&nbsp;ein&nbsp;Stoffgesetz&nbsp;eine&nbsp;Userroutine&nbsp;benoetigt,&nbsp;muss&nbsp;die<br>
+Bezeichnung&nbsp;userroutine&nbsp;und&nbsp;die&nbsp;Anzahl&nbsp;der&nbsp;Rueckgabevariablen&nbsp;numDepVar&nbsp;uebergeben&nbsp;werden.<br>
+Gibt&nbsp;[benoetigtUserroutine,&nbsp;verwendeteBodenwerte]&nbsp;zurueck.<br>
+&nbsp;<br>
+Jeder&nbsp;Eintrag&nbsp;von&nbsp;verfuegbareMaterialien&nbsp;enthaelt:<br>
+&nbsp;&nbsp;&nbsp;[abqbodenname,&nbsp;dbbodenname,&nbsp;&lt;optional:&nbsp;dbbodenbez,&gt;&nbsp;saettigung,&nbsp;verdichtungsgrad,&nbsp;stoffgesetz]</tt></dd></dl>
+ <dl><dt><a name="-BodenspannungDirektZuweisen"><strong>BodenspannungDirektZuweisen</strong></a>(modell, bodenname, nullspannung, voidhoehe, schichten, bodentiefe, bodendichten, k0Werte)</dt><dd><tt>Erzeuge&nbsp;im&nbsp;modell&nbsp;fuer&nbsp;den&nbsp;Bodenkoerper&nbsp;bodenname&nbsp;eine&nbsp;Bodenspannungsverteilung&nbsp;(in&nbsp;z-Richtung<br>
+mit&nbsp;GOK&nbsp;bei&nbsp;z=0).&nbsp;Nutze&nbsp;dazu&nbsp;eine&nbsp;konstante&nbsp;Vorbelastung&nbsp;nullspannung&nbsp;fuer&nbsp;den&nbsp;Voidbereich&nbsp;der<br>
+Hoehe&nbsp;voidhoehe.&nbsp;Fuer&nbsp;jede&nbsp;Schichttiefe&nbsp;in&nbsp;schichten&nbsp;bis&nbsp;bodentiefe&nbsp;werden&nbsp;die&nbsp;uebergebenen&nbsp;Werte<br>
+aus&nbsp;bodendichten&nbsp;und&nbsp;k0Werte&nbsp;direkt&nbsp;zugewiesen.</tt></dd></dl>
+ <dl><dt><a name="-BodenspannungErstellen"><strong>BodenspannungErstellen</strong></a>(modell, bodenname, nullspannung, voidhoehe, schichten, bodentiefe, materialschichten, verwendeteBodenwerte, verwendeteMaterialien, verbose<font color="#909090">=False</font>)</dt><dd><tt>Erzeuge&nbsp;im&nbsp;modell&nbsp;fuer&nbsp;den&nbsp;Bodenkoerper&nbsp;bodenname&nbsp;eine&nbsp;Bodenspannungsverteilung&nbsp;(in&nbsp;z-Richtung<br>
+mit&nbsp;GOK&nbsp;bei&nbsp;z=0).&nbsp;Nutze&nbsp;dazu&nbsp;eine&nbsp;konstante&nbsp;Vorbelastung&nbsp;nullspannung&nbsp;fuer&nbsp;den&nbsp;Voidbereich&nbsp;der<br>
+Hoehe&nbsp;voidhoehe.&nbsp;Fuer&nbsp;jede&nbsp;Schicht&nbsp;der&nbsp;uebergebenen&nbsp;schichten&nbsp;bis&nbsp;bodentiefe&nbsp;werden&nbsp;ueber&nbsp;die<br>
+Bezeichnungen&nbsp;in&nbsp;materialschichten&nbsp;die&nbsp;verwendeteBodenwerte&nbsp;fuer&nbsp;verwendeteMaterialien<br>
+zugewiesen.&nbsp;Optional&nbsp;kann&nbsp;eine&nbsp;Infoausgabe&nbsp;mit&nbsp;verbose=True&nbsp;erstellt&nbsp;werden.</tt></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module abapys.erstellung</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.erstellung</strong></big></big></font></td
+><td align=right valign=bottom
+></td></tr></table>
+    <p><tt>erstellung.py&nbsp;&nbsp;&nbsp;v0.8&nbsp;(2020-09)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="abapys.erstellung.html#PunktListe">PunktListe</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PunktListe">class <strong>PunktListe</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Mini-Klasse&nbsp;zur&nbsp;Erstellung&nbsp;von&nbsp;Paaren&nbsp;aus&nbsp;Koordinaten&nbsp;und&nbsp;Labels.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="PunktListe-__init__"><strong>__init__</strong></a>(self, coordinates, label)</dt></dl>
+
+<dl><dt><a name="PunktListe-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-AxiallagerErstellen"><strong>AxiallagerErstellen</strong></a>(modell, name, punkt1, punkt2, kos)</dt><dd><tt>Erzeuge&nbsp;im&nbsp;modell&nbsp;ein&nbsp;Axiallager&nbsp;name&nbsp;von&nbsp;punkt1&nbsp;zu&nbsp;punkt2&nbsp;mit&nbsp;dem&nbsp;Koordinatensystem&nbsp;kos.&nbsp;Beim<br>
+Axiallager&nbsp;ist&nbsp;nur&nbsp;eine&nbsp;Verschiebung&nbsp;entlang&nbsp;der&nbsp;x-Achse&nbsp;des&nbsp;uebergebenen&nbsp;KOS&nbsp;moeglich.</tt></dd></dl>
+ <dl><dt><a name="-DrehscharnierErstellen"><strong>DrehscharnierErstellen</strong></a>(modell, name, punkt1, punkt2, kos)</dt><dd><tt>Erzeuge&nbsp;im&nbsp;modell&nbsp;ein&nbsp;Drehscharnier&nbsp;name&nbsp;von&nbsp;punkt1&nbsp;zu&nbsp;punkt2&nbsp;mit&nbsp;dem&nbsp;Koordinatensystem&nbsp;kos.<br>
+Beim&nbsp;Drehscharnier&nbsp;ist&nbsp;nur&nbsp;eine&nbsp;Drehung&nbsp;um&nbsp;die&nbsp;x-Achse&nbsp;des&nbsp;uebergebenen&nbsp;KOS&nbsp;moeglich.</tt></dd></dl>
+ <dl><dt><a name="-Knotentransformation"><strong>Knotentransformation</strong></a>(punktliste, xneu<font color="#909090">='x'</font>, yneu<font color="#909090">='y'</font>, zneu<font color="#909090">='z'</font>)</dt><dd><tt>Erstelle&nbsp;eine&nbsp;neue&nbsp;Knotenliste&nbsp;basierend&nbsp;auf&nbsp;punktliste.&nbsp;Dabei&nbsp;werden&nbsp;von&nbsp;allen&nbsp;Eintraegen&nbsp;nur<br>
+label&nbsp;und&nbsp;coordinates&nbsp;uebernommen.&nbsp;Die&nbsp;Koordinaten&nbsp;koennen&nbsp;ueber&nbsp;die&nbsp;Felder&nbsp;xneu,&nbsp;yneu&nbsp;und&nbsp;zneu<br>
+transformiert&nbsp;werden.<br>
+Gibt&nbsp;die&nbsp;transformierte&nbsp;punktliste&nbsp;zurueck.<br>
+&nbsp;<br>
+Fuer&nbsp;alle&nbsp;drei&nbsp;Variablen&nbsp;kann&nbsp;eine&nbsp;Transformationsanweisung&nbsp;wie&nbsp;bspw.<br>
+"sqrt(x**2+y**2)"&nbsp;uebergeben&nbsp;werden,&nbsp;wobei&nbsp;jeweils&nbsp;die&nbsp;Variablen&nbsp;x,&nbsp;y&nbsp;und&nbsp;z&nbsp;zur&nbsp;Verfuegung<br>
+stehen,&nbsp;die&nbsp;die&nbsp;Orignalwerte&nbsp;fuer&nbsp;jeden&nbsp;Knoten&nbsp;enthalten.<br>
+&nbsp;<br>
+Fuer&nbsp;mathematische&nbsp;Zusammenhaenge&nbsp;stehen&nbsp;die&nbsp;Funktionen&nbsp;pi,&nbsp;sqrt,&nbsp;sin,&nbsp;cos,&nbsp;tan,&nbsp;asin,&nbsp;acos,&nbsp;atan<br>
+zur&nbsp;Verfuegung.<br>
+&nbsp;<br>
+WICHTIG:&nbsp;Wenn&nbsp;eine&nbsp;Zustandsuebertragung&nbsp;mit&nbsp;Knoten&nbsp;stattfinden&nbsp;soll,&nbsp;die&nbsp;in&nbsp;dieser&nbsp;Funktion<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transformiert&nbsp;worden&nbsp;sind,&nbsp;dann&nbsp;werden&nbsp;auch&nbsp;tatsaechlich&nbsp;nur&nbsp;die&nbsp;Knotenkoordinaten<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;und&nbsp;keinerlei&nbsp;Werte&nbsp;modifiziert.&nbsp;Das&nbsp;gilt&nbsp;insbesondere&nbsp;fuer&nbsp;Drehungen&nbsp;wie&nbsp;im&nbsp;angegebenen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beispiel,&nbsp;bei&nbsp;dem&nbsp;Tensorergebnisse&nbsp;nicht&nbsp;gedreht,&nbsp;sondern&nbsp;nur&nbsp;an&nbsp;anderer&nbsp;Stelle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ausgegeben&nbsp;werden.</tt></dd></dl>
+ <dl><dt><a name="-NamePartInstance"><strong>NamePartInstance</strong></a>(modell, namensvorschlag)</dt><dd><tt>Ermittle&nbsp;basierend&nbsp;auf&nbsp;namensvorschlag&nbsp;einen&nbsp;Namen&nbsp;fuer&nbsp;ein&nbsp;part/instance&nbsp;im&nbsp;uebergebenen<br>
+modell,&nbsp;der&nbsp;eindeutig&nbsp;ist/noch&nbsp;nicht&nbsp;existiert.&nbsp;Dazu&nbsp;wird&nbsp;modell.parts&nbsp;mit&nbsp;&lt;namensvorschlag&gt;&nbsp;und<br>
+modell.rootAssembly.instances&nbsp;mit&nbsp;inst&lt;namensvorschlag&gt;&nbsp;untersucht&nbsp;und&nbsp;namensvorschlag&nbsp;und&nbsp;ggs.<br>
+mehreren&nbsp;Anpassungen&nbsp;davon&nbsp;ueberprueft.&nbsp;Gibt&nbsp;den&nbsp;(ggfs.&nbsp;angepassten)&nbsp;namensvorschlag&nbsp;zurueck.</tt></dd></dl>
+ <dl><dt><a name="-ReferenzpunktErstellenUndKoppeln"><strong>ReferenzpunktErstellenUndKoppeln</strong></a>(modell, punkt, name, flaeche)</dt><dd><tt>In&nbsp;der&nbsp;rootAssembly&nbsp;von&nbsp;modell&nbsp;einen&nbsp;Referenzpunkt&nbsp;an&nbsp;den&nbsp;Koordinaten&nbsp;punkt&nbsp;erstellen,&nbsp;zu&nbsp;name<br>
+umbenennen&nbsp;und&nbsp;mit&nbsp;der&nbsp;uebergebenen&nbsp;flaeche&nbsp;verknuepfen.</tt></dd></dl>
+</td></tr></table>
+</body></html>
