@@ -12,7 +12,7 @@ all: pycdoc compile copyxls
 
 compile: $(OUTPUT_DIR)/gewichtung.so
 
-pycdoc: $(OUTPUT_DIR)/dokumentation/abapys.html
+pycdoc: $(DOC_DIR)/abapys.html
 
 copyxls: $(OUTPUT_DIR)/abapys/Materialdatenbank*.xlsx
 
@@ -33,7 +33,6 @@ $(OUTPUT_DIR)/dokumentation/abapys.html: $(SOURCE_DIR)/*.py
 	   sed -i "s:<a href=\"abapys.$$blacklisted.html\">$$blacklisted</a><br>:<i>$$blacklisted</i><br>:" abapys.html; \
 	   rm abapys.$$blacklisted.html; \
 	done;
-	cp $(TEMP_DIR)/*.html $(OUTPUT_DIR)/dokumentation/;
 	mv $(TEMP_DIR)/*.html $(DOC_DIR)/;
 	mv $(TEMP_DIR)/abapys/*.pyc $(OUTPUT_DIR)/abapys/;
 	rm -r $(TEMP_DIR);
