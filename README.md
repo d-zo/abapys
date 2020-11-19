@@ -69,25 +69,33 @@ Usage and Documentation
 
 abapys provides special purpose functions for creating parametrized models or postprocessing
 simulation results.
-A simple function documentation with pydoc can be found in the compiled folder and is linked
+A simple function documentation (in german) created with pydoc can be found
 [here](https://d-zo.github.io/abapys/abapys.html "abapys documentation")
 The functions can either be called in the Abaqus command prompt for interactive results or
 put in scripts with other commands to record a sequence of instructions.
 The basic usage and some examples are given in the ”Abaqus scripting with abapys“ tutorial.
-An html-version of the tutorial can be found
+A html-version of the tutorial can be found
 [here](https://d-zo.github.io/abapys/abaqusscripting.html "Abaqus scripting with abapys [html]")
-and an pdf-version
+and a pdf-version
 [here](https://d-zo.github.io/abapys/abaqusscripting.pdf "Abaqus scripting with abapys [pdf]").
 
-Another project called [SimpleCodeParser](https://github.com/d-zo/SimpleCodeParser)
+Another project called [SimpleScriptGenerator](https://github.com/d-zo/SimpleScriptGenerator)
 can help to create scripts with abapys functions.
-[SimpleCodeParser](https://github.com/d-zo/SimpleCodeParser) is providing
+[SimpleScriptGenerator](https://github.com/d-zo/SimpleScriptGenerator) is providing
 a user interface for intuitive and interactive script creation.
 The logic and content of it can be adjusted with different configuration files.
 So a preconfigured configuration named _abapys_front_ can be used
 to create scripts with Abaqus commands and abapys functions
 (Abaqus and abapys are not needed to create those scripts but to run them).
 
+If you have no or very little knowledge of Abaqus,
+you may want to have a look at some tutorials (and the resulting Python code) first.
+There is also a tutorial called ”Pile jacking example in Abaqus“,
+which can help getting started with Abaqus and Python.
+An html-version of the tutorial can be found
+[here](https://d-zo.github.io/abapys/pilejackingexample.html "Pile jacking example in Abaqus [html]")
+and an pdf-version
+[here](https://d-zo.github.io/abapys/pilejackingexample.pdf "Pile jacking example in Abaqus [pdf]").
 
 
 Structure
