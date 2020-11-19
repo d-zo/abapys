@@ -2,7 +2,8 @@
 abapys 0.6.4
 ============
 
-[abapys](https://github.com/d-zo/abapys) is a collection of special purpose Python functions using
+[abapys](https://github.com/d-zo/abapys) is a collection of special purpose Python functions 
+for creating parametrized models or postprocessing simulation results with
 the commercial Finite-Element-Analysis software
 [Abaqus](https://www.3ds.com/products-services/simulia/products/abaqus/ "SIMULIA Abaqus").
 It was created alongside work at the Institute of Geotechnical Engineering
@@ -11,6 +12,11 @@ Therefore it is centered around model creation and output processing for simulat
 soil samples and soil-structure interaction.
 All functions were tested for Abaqus versions between 6.14-2 (2015) and Abaqus 2020.
 
+
+Project status
+--------------
+
+The source files are to be uploaded until 2020-12-01.
 
 
 Installation
@@ -67,17 +73,15 @@ abapys/
 Usage and Documentation
 -----------------------
 
-abapys provides special purpose functions for creating parametrized models or postprocessing
-simulation results.
 A simple function documentation (in german) created with pydoc can be found
-[here](https://d-zo.github.io/abapys/abapys.html "abapys documentation")
+[here](https://d-zo.github.io/abapys/abapys.html "abapys documentation").
 The functions can either be called in the Abaqus command prompt for interactive results or
 put in scripts with other commands to record a sequence of instructions.
-The basic usage and some examples are given in the ”Abaqus scripting with abapys“ tutorial.
-A html-version of the tutorial can be found
+The basic usage and some examples are given in the ”Abaqus scripting with abapys“ tutorial (coming soon).
+<!--A html-version of the tutorial can be found
 [here](https://d-zo.github.io/abapys/abaqusscripting.html "Abaqus scripting with abapys [html]")
 and a pdf-version
-[here](https://d-zo.github.io/abapys/abaqusscripting.pdf "Abaqus scripting with abapys [pdf]").
+[here](https://d-zo.github.io/abapys/abaqusscripting.pdf "Abaqus scripting with abapys [pdf]").-->
 
 Another project called [SimpleScriptGenerator](https://github.com/d-zo/SimpleScriptGenerator)
 can help to create scripts with abapys functions.

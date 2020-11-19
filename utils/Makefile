@@ -2,7 +2,6 @@ SOURCE_DIR = ../src
 TEMP_DIR = temp_work_dir
 OUTPUT_DIR = ../compiled
 DOC_DIR = ../docs
-CUR_DIR = ${PWD}
 
 DOC_BLACKLIST = __init__
 
@@ -19,7 +18,7 @@ copyxls: $(OUTPUT_DIR)/abapys/Materialdatenbank*.xlsx
 $(OUTPUT_DIR)/gewichtung.so: $(SOURCE_DIR)/gewichtung.cpp
 	g++ -std=c++11 -fPIC $^ -o $@ -shared;
 
-$(OUTPUT_DIR)/dokumentation/abapys.html: $(SOURCE_DIR)/*.py
+$(DOC_DIR)/abapys.html: $(SOURCE_DIR)/*.py
 	mkdir -p $(TEMP_DIR)/abapys;
 	cp -r $(SOURCE_DIR)/* $(TEMP_DIR)/abapys/;
 	cd $(TEMP_DIR); \
