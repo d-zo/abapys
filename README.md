@@ -38,7 +38,9 @@ from abapys import *
 ```
 
 abapys can use material parameters from Spreadsheets (`.xlsx`-files).
-To read those files, `openpyxl`, `et_xmlfile` and `jdcal` are used as external dependencies
+To read those files [openpyxl](https://openpyxl.readthedocs.io)
+and its dependencies [et_xmlfile](https://pypi.org/project/et_xmlfile/)
+and [jdcal](https://github.com/phn/jdcal) are used as external dependencies
 and have to be provided.
 One possible solution is to install abapys and those dependencies in one folder,
 which has to be included in the module path. The structure should look like the following
