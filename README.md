@@ -174,6 +174,6 @@ License
 
 abapys is released under the
 [GPL](https://www.gnu.org/licenses/gpl-3.0.html "GNU General Public License"),
-version 3 or greater (see als COPYRIGHT file).
+version 3 or greater (see also [LICENSE](https://github.com/d-zo/abapys/blob/master/LICENSE) file).
 It is provided without any warranty.
 
