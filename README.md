@@ -13,11 +13,6 @@ soil samples and soil-structure interaction.
 All functions were tested for Abaqus versions between 6.14-2 (2015) and Abaqus 2020.
 
 
-Project status
---------------
-
-The source files are to be uploaded until 2020-12-01.
-
 
 Installation
 ------------
@@ -102,6 +97,7 @@ An html-version of the tutorial can be found
 [here](https://d-zo.github.io/abapys/pilejackingexample.html "Pile jacking example in Abaqus [html]")
 and an pdf-version
 [here](https://d-zo.github.io/abapys/pilejackingexample.pdf "Pile jacking example in Abaqus [pdf]").
+
 
 
 Structure

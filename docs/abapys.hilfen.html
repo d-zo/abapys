@@ -10,7 +10,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.hilfen</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>hilfen.py&nbsp;&nbsp;&nbsp;v3.0&nbsp;(2020-10)</tt></p>
+    <p><tt>hilfen.py&nbsp;&nbsp;&nbsp;v3.3&nbsp;(2020-11)</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -45,13 +45,15 @@ zugreifen&nbsp;zu&nbsp;koennen.</tt></dd></dl>
  <dl><dt><a name="-GueltigenNamenFinden"><strong>GueltigenNamenFinden</strong></a>(umgebung, namensvorschlag)</dt><dd><tt>Waehle&nbsp;basierend&nbsp;auf&nbsp;dem&nbsp;namensvorschlag&nbsp;einen&nbsp;eindeutigen&nbsp;Namen,&nbsp;der&nbsp;in&nbsp;der&nbsp;uebergebenen<br>
 umgebung&nbsp;noch&nbsp;nicht&nbsp;existiert.&nbsp;Dazu&nbsp;wird&nbsp;der&nbsp;namensvorschlag&nbsp;geprueft&nbsp;und&nbsp;mit&nbsp;einer&nbsp;Zahl&nbsp;von<br>
 000-900&nbsp;erweitert,&nbsp;bis&nbsp;er&nbsp;eindeutig&nbsp;ist.&nbsp;Gibt&nbsp;den&nbsp;(ggfs.&nbsp;ueberarbeiteten)&nbsp;namensvorschlag&nbsp;zurueck.</tt></dd></dl>
- <dl><dt><a name="-InitialisiereAbapys"><strong>InitialisiereAbapys</strong></a>(session, version<font color="#909090">=2018</font>, pfad<font color="#909090">='/exports/all/intern/abapys/'</font>)</dt><dd><tt>Erkenne&nbsp;und&nbsp;speichere,&nbsp;ob&nbsp;sich&nbsp;die&nbsp;aktuelle&nbsp;session&nbsp;in&nbsp;der&nbsp;GUI&nbsp;oder&nbsp;Konsole&nbsp;befindet&nbsp;und<br>
+ <dl><dt><a name="-InitialisiereAbapys"><strong>InitialisiereAbapys</strong></a>(session, version<font color="#909090">=2018</font>, pfad<font color="#909090">='/exports/all/intern/abapys/'</font>, xSkalierung<font color="#909090">=None</font>, ySkalierung<font color="#909090">=None</font>)</dt><dd><tt>Erkenne&nbsp;und&nbsp;speichere,&nbsp;ob&nbsp;sich&nbsp;die&nbsp;aktuelle&nbsp;session&nbsp;in&nbsp;der&nbsp;GUI&nbsp;oder&nbsp;Konsole&nbsp;befindet&nbsp;und<br>
 welche&nbsp;version&nbsp;von&nbsp;Abaqus&nbsp;verwendet&nbsp;wird.&nbsp;Dazu&nbsp;werden&nbsp;die&nbsp;internen&nbsp;Variablen&nbsp;von&nbsp;Abaqus<br>
 uebergeben,&nbsp;so&nbsp;dass&nbsp;session&nbsp;und&nbsp;version&nbsp;nicht&nbsp;manuell&nbsp;definiert&nbsp;werden&nbsp;muessen.&nbsp;Normalerweise<br>
 koennen&nbsp;also&nbsp;die&nbsp;Argumente&nbsp;(session=session,&nbsp;version=version)&nbsp;uebergeben&nbsp;werden.<br>
 &nbsp;<br>
 Falls&nbsp;nicht&nbsp;der&nbsp;Standardpfad&nbsp;fuer&nbsp;zusaetzliche&nbsp;Dateien&nbsp;(bspw.&nbsp;Bibliotheken&nbsp;oder&nbsp;Materialtabelle)<br>
-genutzt&nbsp;werden&nbsp;soll,&nbsp;kann&nbsp;der&nbsp;Pfad&nbsp;explizit&nbsp;ueber&nbsp;pfad&nbsp;angegeben&nbsp;werden.</tt></dd></dl>
+genutzt&nbsp;werden&nbsp;soll,&nbsp;kann&nbsp;der&nbsp;Pfad&nbsp;explizit&nbsp;ueber&nbsp;pfad&nbsp;angegeben&nbsp;werden.&nbsp;In&nbsp;dieser&nbsp;Funktion<br>
+werden&nbsp;Skalierungswerte&nbsp;fuer&nbsp;den&nbsp;Viewport&nbsp;bei&nbsp;einer&nbsp;Bildausgabe&nbsp;berechnet,&nbsp;die&nbsp;aber&nbsp;durch<br>
+Uebergabe&nbsp;der&nbsp;Faktoren&nbsp;xSkalierung&nbsp;und&nbsp;ySkalierung&nbsp;ueberschrieben&nbsp;werden&nbsp;koennen.</tt></dd></dl>
  <dl><dt><a name="-Log"><strong>Log</strong></a>(ausgabe, ueberschreiben<font color="#909090">=False</font>)</dt><dd><tt>Die&nbsp;uebergebene&nbsp;ausgabe&nbsp;entweder&nbsp;in&nbsp;Abaqus&nbsp;behalten&nbsp;oder&nbsp;in&nbsp;die&nbsp;Konsole&nbsp;umleiten,&nbsp;falls&nbsp;abapys<br>
 initialisiert&nbsp;worden&nbsp;ist&nbsp;und&nbsp;die&nbsp;GUI&nbsp;nicht&nbsp;aktiv&nbsp;ist.&nbsp;Optional&nbsp;kann&nbsp;ein&nbsp;ueberschreiben&nbsp;der<br>
 Ausgabe&nbsp;aktiviert&nbsp;werden&nbsp;(z.B.&nbsp;fuer&nbsp;Status-/Prozentangaben).</tt></dd></dl>
