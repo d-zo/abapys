@@ -32,5 +32,10 @@ setup(
    license='GPL',
    url='https://github.com/d-zo/abapys',
    install_requires=['openpyxl'],
+   classifiers=[
+      'Programming Language :: Python :: 2.7',
+      'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+      'Natural Language :: German',
+   ],
    )
    
