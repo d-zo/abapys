@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-boden.py   v1.9 (2020-10)
+boden.py   v2.0 (2020-12)
 """
 
 # Copyright 2020 Dominik Zobel.
@@ -607,9 +607,7 @@ def _Boden_setserstellen(modell, name, bodentiefe, voidhoehe, bodenbereich, schi
       if (idxSchicht == 0):
          continue;
       # FIXME: pointOn der Zellen ist manchmal auf der Randflaeche - welche? Eindeutig bestimmbar?
-      #        Ueber Randflaechen gehen - min. vier muessen in der ebene sein?
-      # FIXME: 2020-02-20: Unterscheidung zwischen unterster Schicht und Rest bei Auswahl
-      #        vorher: '(elem.pointOn[0][2] >= var[0]) and (elem.pointOn[0][2] <= var[1])'
+      #        Ueber Randflaechen gehen (min. vier muessen in einer ebene sein)?
       if (idxSchicht == len(tempSchichten)-1):
          bedingung = '(elem.pointOn[0][2] >= var[0]) and (elem.pointOn[0][2] <= var[1])';
       else:

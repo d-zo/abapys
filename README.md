@@ -86,8 +86,9 @@ can help to create scripts with abapys functions.
 a user interface for intuitive and interactive script creation.
 The logic and content of it can be adjusted with different configuration files.
 So a preconfigured configuration named _abapys_front_ can be used
-to create scripts with Abaqus commands and abapys functions
-(Abaqus and abapys are not needed to create those scripts but to run them).
+to create scripts with Abaqus commands and abapys functions.
+Abaqus and abapys are not necessary to create these scripts.
+In order to run the scripts however, both tools are required.
 
 If you have no or very little knowledge of Abaqus,
 you may want to have a look at some tutorials (and the resulting Python code) first.

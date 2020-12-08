@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-uebertragung.py   v0.4 (2020-09)
+uebertragung.py   v0.5 (2020-12)
 """
 
 # Copyright 2020 Dominik Zobel.
@@ -502,7 +502,7 @@ def _ZustandsuebertragungAusgabeVorbereiten(mdbname, ausgabevariable, bezugsfram
       elif (ausgabevariable == 'SVAVG'):
          ausgabedatei = mdbname + '_svavg.add';
          ausgabetext = '*Initial Conditions, type=STRESS, input=' + ausgabedatei;
-      elif (ausgabevariable == 'EVF'): # FIXME: ungetestet
+      elif (ausgabevariable == 'EVF'):
          ausgabedatei = mdbname + '_evf.add';
          ausgabetext = '*Initial Conditions, type=VOLUME FRACTION, input=' + ausgabedatei;
       else:
@@ -553,7 +553,7 @@ def _ZustandszuweisungErgebnisdateiSchreiben(ausgabedatei, ergebnisse, mdbinstna
             ausgabewerte = [0.0 for idx in range(laenge_ausgabewerte)];
             labeltemp = -1;
             # FIXME: Die Umrechnung von knoten_pro_odbelement auf knoten_pro_mdbelement ist hier
-            #        scheinbar noch nicht implementiert -> nachholen
+            #        nicht implementiert -> nachholen
             for idx_punkt in range(knoten_pro_mdbelement):
                idxtemp = gewichtungKnotenLabels[knoten_pro_mdbelement*idx_knoten+idx_punkt];
                labeltemp = idxtemp + 1;
@@ -843,8 +843,6 @@ def Zustandszuweisung(session, modell, zielkoordinaten, zielelemente, zielwerte,
    
    Wichtig: Alle Elemente des parts muessen den gleichen Elementyp haben.
    """
-   # FIXME: variablentyp erweitern zu (S, SVAVG, EVF, SDV)
-   #
    from ctypes import c_double, c_int
    from hilfen import Log, BibliothekLaden
    #
@@ -908,9 +906,6 @@ def Zustandszuweisung(session, modell, zielkoordinaten, zielelemente, zielwerte,
    bezugsElemente = [0 for idx in range(len(mdbelemente))];
    IntArray_bezugsElemente = c_int * len(bezugsElemente);
    cpp_bezugsElemente = IntArray_bezugsElemente(*list(bezugsElemente));
-   #
-   # FIXME: Ordentlich unterscheiden
-   sindEckpunkte = 1;
    #
    Log('# 2-3: Ermittle Gewichtungen');
    cpp_gewichtung_bestimmen(c_int(dimensionen), c_int(knoten_pro_odbelement),
