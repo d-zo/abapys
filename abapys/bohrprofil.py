@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-bohrprofil.py   v1.55 (2020-09)
+bohrprofil.py   v1.6 (2020-12)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -64,11 +64,11 @@ def Bohrprofil_VVBP(modell, name, laenge, r_aussen, r_innen, spitzenwinkel, rund
                  _|_______  |    .    |xxxx _|______|______________|_
                   |          \   .   /       |      |              |
                          --.  \  .  /        | 
-                 rundwinkel \  \ . /         | spitzenlaenge = r_innen/tan(grad2rad*spitzenwinkel)
+                 rundwinkel \  \ . /         | spitzenlaenge = r_innen*tan(grad2rad*spitzenwinkel)
                              |  \./  ________|_
                                  '           |
    
-   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel < 90
+   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel <= 90 - 2*|45-spitzenwinkel|
    """
    import part
    import assembly
@@ -199,11 +199,11 @@ def Bohrprofil_SOBP(modell, name, laenge, r_aussen, r_innen, spitzenwinkel, rund
                 _|_______  |    .    |xxxx _|___|_____________|_
                  |          \   .   /       |   |             |
                         --.  \  .  /        | 
-                rundwinkel \  \ . /         | spitzenlaenge = r_innen/tan(grad2rad*spitzenwinkel)
+                rundwinkel \  \ . /         | spitzenlaenge = r_innen*tan(grad2rad*spitzenwinkel)
                             |  \./  ________|_
                                 '           |
    
-   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel < 90
+   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel <= 90 - 2*|45-spitzenwinkel|
    """
    import part
    import assembly
@@ -353,11 +353,11 @@ def Bohrprofil_VBP(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel, gi
                    |    .    |  _|_________|_
                     \   .   /    |         |
                 --.  \  .  /     | 
-        rundwinkel \  \ . /      | spitzenlaenge = r_aussen/tan(grad2rad*spitzenwinkel)
+        rundwinkel \  \ . /      | spitzenlaenge = r_aussen*tan(grad2rad*spitzenwinkel)
                     |  \./  _____|_
                         '        |
    
-   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel < 90
+   Zusaetzlich muss gelten: 0 <= spitzenwinkel < 90 und 0 <= rundwinkel <= 90 - 2*|45-spitzenwinkel|
    """
    import part
    #
@@ -401,6 +401,11 @@ def _Bohrprofil_stange(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel
    if (rundwinkel == 0.0):
       Linie(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0));
    else:
+      max_rundwinkel = 90.0 - 2.0*abs(45.0-spitzenwinkel);
+      if (rundwinkel > max_rundwinkel):
+         Log('# Rundwinkel zu gross - setze auf max. zulaessigen Wert ' + str(max_rundwinkel));
+         rundwinkel = max_rundwinkel;
+      #
       rundungsfaktor = 0.5/tan(0.5*rundwinkel*grad2rad);
       KreisbogenPunkte(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0),
          mittelpunkt=(0.5*r_aussen + rundungsfaktor*spitzenlaenge,
@@ -444,6 +449,11 @@ def _Bohrprofil_vvbpstange(modell, name, laenge, r_aussen, r_innen, spitzenwinke
    if (rundwinkel == 0.0):
       Linie(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_innen, 0.0));
    else:
+      max_rundwinkel = 90.0 - 2.0*abs(45.0-spitzenwinkel);
+      if (rundwinkel > max_rundwinkel):
+         Log('# Rundwinkel zu gross - setze auf max. zulaessigen Wert ' + str(max_rundwinkel));
+         rundwinkel = max_rundwinkel;
+      #
       rundungsfaktor = 0.5/tan(0.5*rundwinkel*grad2rad);
       KreisbogenPunkte(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_innen, 0.0),
          mittelpunkt=(0.5*r_innen + rundungsfaktor*spitzenlaenge,
@@ -507,7 +517,7 @@ def _Bohrprofil_wendelstueck(modell, name, r_aussen, r_innen, ganghoehe, wendeld
 # -------------------------------------------------------------------------------------------------
 def _Bohrprofil_spitzenlaenge(breite, winkel):
    """Berechne die Laenge einer Bohrspitze bei gegebener breite (Radius) und winkel der Spitze.
-   Gibt laenge_spitze zurueck.
+   Gibt die berechnete Laenge zurueck.
    """
    from math import tan
    from hilfen import grad2rad, Log
@@ -517,12 +527,7 @@ def _Bohrprofil_spitzenlaenge(breite, winkel):
       Log('# Ungueltiger Wert fuer Spitzenwinkel (0 <= winkel < 90) - setze zu Null');
       tempwinkel = 0.0;
    #
-   if (tempwinkel == 0.0):
-      laenge_spitze = 0.0;
-   else:
-      laenge_spitze = breite/tan(tempwinkel*grad2rad);
-   #
-   return laenge_spitze;
+   return breite*tan(tempwinkel*grad2rad);
 #
 
 

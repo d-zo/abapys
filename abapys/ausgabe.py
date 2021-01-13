@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-ausgabe.py   v1.2 (2020-10)
+ausgabe.py   v1.3 (2021-01)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -789,7 +789,7 @@ def BildSpeichern(dateiname, session, dateityp='png', bildgroesse=[], hintergrun
 
 
 # -------------------------------------------------------------------------------------------------
-def MultiBildSpeichern(dateiname, session, anordnung=[1, 1], zeitstempel=[], zeitstempelkanal=0,
+def MultiBildSpeichern(dateiname, session, anordnung=[1, 1], zeitstempel=None, zeitstempelkanal=0,
    legendenkanal=0, mehrfachmodus=False, autozoom=False):
    """Speichere Dateien mit dem Titel dateiname aus dem aktiven Viewport der Session session und odb
    namens odbname. Optional kann statt einem Bild mehrere Teilbilder nach der Anordnung anordnung
@@ -809,7 +809,7 @@ def MultiBildSpeichern(dateiname, session, anordnung=[1, 1], zeitstempel=[], zei
       Log('Abbruch: MultiBildAusgabe unterstuetzt nur maximal ' + str(len(auswahlbuchstaben)) + ' Teilbilder');
       return;
    #
-   if (not (zeitstempel == [])):
+   if (zeitstempel is not None):
       viewport.hideAnnotation(annotation=zeitstempel);
    #
    if (not mehrfachmodus):
@@ -845,7 +845,7 @@ def MultiBildSpeichern(dateiname, session, anordnung=[1, 1], zeitstempel=[], zei
             viewport.view.pan(xFraction=pan[0], yFraction=pan[1]);
          #
          _SichtfeldGitterVerschieben(viewport=viewport, anordnung=anordnung, position=idxKanal);
-         if ((not (zeitstempel == [])) and (idxKanal == zeitstempelkanal)):
+         if ((zeitstempel is not None) and (idxKanal == zeitstempelkanal)):
             viewport.plotAnnotation(annotation=zeitstempel);
             BildSpeichern(dateiname=dateiname + auswahlbuchstaben[idxKanal+kanaloffset],
                session=session);
@@ -867,7 +867,7 @@ def MultiBildSpeichern(dateiname, session, anordnung=[1, 1], zeitstempel=[], zei
             viewport.view.pan(xFraction=pan[0], yFraction=pan[1]);
          #
          _SichtfeldGitterVerschieben(viewport=viewport, anordnung=anordnung, position=idxKanal);
-         if ((not (zeitstempel == [])) and (idxKanal == zeitstempelkanal)):
+         if ((zeitstempel is not None) and (idxKanal == zeitstempelkanal)):
             viewport.plotAnnotation(annotation=zeitstempel);
             BildSpeichern(dateiname=dateiname + auswahlbuchstaben[idxKanal], session=session);
             viewport.hideAnnotation(annotation=zeitstempel);
@@ -965,7 +965,7 @@ def VideobilderSpeichern(dateiname, session, odbname, dateityp='png', numzahlen=
          if (not gestartet):
             gestartet = True;
             animationssteuerung.showFrame(frame=idx);
-            if (not (erstedateinummer is None)):
+            if (erstedateinummer is not None):
                nummeroffset = idx - erstedateinummer;
          #
          bildname = dateiname + str(idx-nummeroffset).zfill(numzahlen);
@@ -991,7 +991,7 @@ def VideobilderSpeichern(dateiname, session, odbname, dateityp='png', numzahlen=
 
 
 # -------------------------------------------------------------------------------------------------
-def MultiVideobilderSpeichern(dateiname, session, odbname, anordnung=[1, 1], zeitstempel=[],
+def MultiVideobilderSpeichern(dateiname, session, odbname, anordnung=[1, 1], zeitstempel=None,
    zeitstempelkanal=0, legendenkanal=0, mehrfachmodus=False, autozoom=False):
    """Speichere Dateien mit dem Basisnamen dateiname aus der Ausgabedatei odbname, die im aktiven
    Viewport der session dargestellt ist. Optional koennen statt einem Bild mehrere Teilbilder in der
@@ -1015,7 +1015,7 @@ def MultiVideobilderSpeichern(dateiname, session, odbname, anordnung=[1, 1], zei
       Log('Abbruch: MultiVideoAusgabe unterstuetzt nur maximal ' + str(len(auswahlbuchstaben)) + ' Teilbilder');
       return;
    #
-   if (not (zeitstempel == [])):
+   if (zeitstempel is not None):
       viewport.hideAnnotation(annotation=zeitstempel);
    #
    if (not mehrfachmodus):
@@ -1051,7 +1051,7 @@ def MultiVideobilderSpeichern(dateiname, session, odbname, anordnung=[1, 1], zei
             viewport.view.pan(xFraction=pan[0], yFraction=pan[1]);
          #
          _SichtfeldGitterVerschieben(viewport=viewport, anordnung=anordnung, position=idxKanal);
-         if ((not (zeitstempel == [])) and (idxKanal == zeitstempelkanal)):
+         if ((zeitstempel is not None) and (idxKanal == zeitstempelkanal)):
             viewport.plotAnnotation(annotation=zeitstempel);
             VideobilderSpeichern(dateiname=dateiname + auswahlbuchstaben[idxKanal+kanaloffset],
                session=session, odbname=odbname, zeitstempel=zeitstempel);
@@ -1073,7 +1073,7 @@ def MultiVideobilderSpeichern(dateiname, session, odbname, anordnung=[1, 1], zei
             viewport.view.pan(xFraction=pan[0], yFraction=pan[1]);
          #
          _SichtfeldGitterVerschieben(viewport=viewport, anordnung=anordnung, position=idxKanal);
-         if ((not (zeitstempel == [])) and (idxKanal == zeitstempelkanal)):
+         if ((zeitstempel is not None) and (idxKanal == zeitstempelkanal)):
             viewport.plotAnnotation(annotation=zeitstempel);
             VideobilderSpeichern(dateiname=dateiname + auswahlbuchstaben[idxKanal], session=session,
                odbname=odbname, zeitstempel=zeitstempel);

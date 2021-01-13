@@ -3,7 +3,7 @@
 zeichnung.py   v0.75 (2019-08)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.

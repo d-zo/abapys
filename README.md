@@ -74,11 +74,11 @@ A simple function documentation (in german) created with pydoc can be found
 [here](https://d-zo.github.io/abapys/abapys.html "abapys documentation").
 The functions can either be called in the Abaqus command prompt for interactive results or
 put in scripts with other commands to record a sequence of instructions.
-The basic usage and some examples are given in the ”Abaqus scripting with abapys“ tutorial (coming soon).
-<!--A html-version of the tutorial can be found
+The basic usage and some examples are given in the ”Abaqus scripting with abapys“ tutorial.
+A html-version of the tutorial can be found
 [here](https://d-zo.github.io/abapys/abaqusscripting.html "Abaqus scripting with abapys [html]")
 and a pdf-version
-[here](https://d-zo.github.io/abapys/abaqusscripting.pdf "Abaqus scripting with abapys [pdf]").-->
+[here](https://d-zo.github.io/abapys/abaqusscripting.pdf "Abaqus scripting with abapys [pdf]").
 
 Another project called [SimpleScriptGenerator](https://github.com/d-zo/SimpleScriptGenerator)
 can help to create scripts with abapys functions.

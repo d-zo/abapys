@@ -10,7 +10,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.bohrprofil</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>bohrprofil.py&nbsp;&nbsp;&nbsp;v1.55&nbsp;(2020-09)</tt></p>
+    <p><tt>bohrprofil.py&nbsp;&nbsp;&nbsp;v1.6&nbsp;(2020-12)</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -57,11 +57,11 @@ schraublaenge&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_|_______&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;|xxxx&nbsp;_|___|_____________|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--.&nbsp;&nbsp;\&nbsp;&nbsp;.&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_innen/tan(grad2rad*spitzenwinkel)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_innen*tan(grad2rad*spitzenwinkel)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;\./&nbsp;&nbsp;________|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;<br>
-Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;&nbsp;90</tt></dd></dl>
+Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;=&nbsp;90&nbsp;-&nbsp;2*|45-spitzenwinkel|</tt></dd></dl>
  <dl><dt><a name="-Bohrprofil_VBP"><strong>Bohrprofil_VBP</strong></a>(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel, gitter_werkzeug)</dt><dd><tt>Erstelle&nbsp;ein&nbsp;Vollverdraengungsprofil&nbsp;name&nbsp;im&nbsp;Modell&nbsp;modell&nbsp;aus&nbsp;den&nbsp;in&nbsp;der&nbsp;folgenden&nbsp;Skizze<br>
 dargestellten&nbsp;Parametern.&nbsp;Die&nbsp;fehlende&nbsp;Groesse&nbsp;gitter_werkzeug&nbsp;gibt&nbsp;die&nbsp;Gitterfeinheit&nbsp;bei&nbsp;der<br>
 Vernetzung&nbsp;des&nbsp;Modells&nbsp;an.&nbsp;Gibt&nbsp;[part&lt;name&gt;,&nbsp;inst&lt;name&gt;]&nbsp;zurueck.<br>
@@ -100,11 +100,11 @@ Vernetzung&nbsp;des&nbsp;Modells&nbsp;an.&nbsp;Gibt&nbsp;[part&lt;name&gt;,&nbsp
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;_|_________|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--.&nbsp;&nbsp;\&nbsp;&nbsp;.&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_aussen/tan(grad2rad*spitzenwinkel)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_aussen*tan(grad2rad*spitzenwinkel)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;\./&nbsp;&nbsp;_____|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;<br>
-Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;&nbsp;90</tt></dd></dl>
+Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;=&nbsp;90&nbsp;-&nbsp;2*|45-spitzenwinkel|</tt></dd></dl>
  <dl><dt><a name="-Bohrprofil_VVBP"><strong>Bohrprofil_VVBP</strong></a>(modell, name, laenge, r_aussen, r_innen, spitzenwinkel, rundwinkel, schraublaenge1, profillaenge1, schraublaenge2, profillaenge2, laenge12, ganghoehe, wendeldicke, gitter_werkzeug)</dt><dd><tt>Erstelle&nbsp;ein&nbsp;Vollverdraengungsbohrprofil&nbsp;name&nbsp;im&nbsp;Modell&nbsp;modell&nbsp;aus&nbsp;den&nbsp;in&nbsp;der&nbsp;folgenden<br>
 Skizze&nbsp;dargestellten&nbsp;Parametern.&nbsp;Die&nbsp;fehlende&nbsp;Groesse&nbsp;gitter_werkzeug&nbsp;gibt&nbsp;die&nbsp;Gitterfeinheit<br>
 bei&nbsp;der&nbsp;Vernetzung&nbsp;des&nbsp;Modells&nbsp;an.&nbsp;Gibt&nbsp;[part&lt;name&gt;,&nbsp;inst&lt;name&gt;]&nbsp;zurueck.<br>
@@ -144,10 +144,10 @@ schraublaenge1&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xxxx|&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_|_______&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;&nbsp;|xxxx&nbsp;_|______|______________|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--.&nbsp;&nbsp;\&nbsp;&nbsp;.&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_innen/tan(grad2rad*spitzenwinkel)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rundwinkel&nbsp;\&nbsp;&nbsp;\&nbsp;.&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;spitzenlaenge&nbsp;=&nbsp;r_innen*tan(grad2rad*spitzenwinkel)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;\./&nbsp;&nbsp;________|_<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;<br>
-Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;&nbsp;90</tt></dd></dl>
+Zusaetzlich&nbsp;muss&nbsp;gelten:&nbsp;0&nbsp;&lt;=&nbsp;spitzenwinkel&nbsp;&lt;&nbsp;90&nbsp;und&nbsp;0&nbsp;&lt;=&nbsp;rundwinkel&nbsp;&lt;=&nbsp;90&nbsp;-&nbsp;2*|45-spitzenwinkel|</tt></dd></dl>
 </td></tr></table>
 </body></html>

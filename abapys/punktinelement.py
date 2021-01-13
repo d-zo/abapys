@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-punktinelement.py   v1.2 (2020-09)
+punktinelement.py   v1.3 (2021-01)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -101,32 +101,32 @@ def _PunktMoeglicherweiseInElement(punkte, referenzpunkt, dimensionen):
 
 
 # -------------------------------------------------------------------------------------------------
-def KnotengewichtungInElement(element, referenzpunkt, knoten, label_zu_idx_punkte=[]):
+def KnotengewichtungInElement(element, referenzpunkt, knoten, listenhilfe=[]):
    """Bestimmt die Anteile, die ein referenzpunkt aus den Knotenpunkten des in punkte definierten
    Elements hat. Die Koordinaten der Elemente muessen in knoten definiert sein. Die optionale
    Uebergabe einer Zuordnung Listenhilfe von Labels zu Indizes beschleunigt den Vorgang.
    Gibt [labelsEckpunkte, Knotengewichtung] zurueck.
    
    WICHTIG: Wenn Elemente einer mdb statt einer odb untersucht werden sollen, sollte entweder keine
-            oder die folgende label_zu_idx_punkte uebergeben werden:
+            oder die folgende listenhilfe uebergeben werden:
    
-   label_zu_idx_punkte = [idx for idx in range(len(knoten))];
+   listenhilfe = [idx for idx in range(len(knoten))];
    """
    from hilfen import ElementAusOdb, ErstelleLabelsortierteGeomlist
    #
-   if (label_zu_idx_punkte == []):
+   if (listenhilfe == []):
       if (ElementAusOdb(element=element)):
-         label_zu_idx_punkte = ErstelleLabelsortierteGeomlist(geomliste=knoten);
+         listenhilfe = ErstelleLabelsortierteGeomlist(geomliste=knoten);
       else:
-         label_zu_idx_punkte = [idx for idx in range(len(knoten))];
+         listenhilfe = [idx for idx in range(len(knoten))];
    #
    dimensionen = 2;
    if ('3D' in str(element.type)):
       dimensionen = 3;
    #
    punkte = PunktkoordinatenVonElement(element=element, knoten=knoten,
-      listenhilfe=label_zu_idx_punkte);
-   punktlabels = [knoten[label_zu_idx_punkte[einzelpunkt]].label for einzelpunkt in element.connectivity];
+      listenhilfe=listenhilfe);
+   punktlabels = [knoten[listenhilfe[einzelpunkt]].label for einzelpunkt in element.connectivity];
    return [punktlabels, KnotengewichtungPunktInPunktkoordinaten(punkte=punkte,
       referenzpunkt=referenzpunkt, dimensionen=dimensionen)];
 #

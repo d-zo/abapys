@@ -3,7 +3,7 @@
 auswahl.py   v0.3 (2020-09)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -122,7 +122,7 @@ def ZweifachbedingteKantenAuswahl(elemente, bedingung1='True', bedingung2='True'
    sowie vert2 zugegriffen werden (ebenfalls vert.pointOn[0][#] mit Raute als 0, 1 oder 2).
    
    Die ersten beiden Bedingungen sind zur Auswahl der der Kanten. Kanten die eine der ersten beiden
-   Bedingungen nicht erfuellen, werdne ignoriert. Die restlichen Kanten werden sortiert, abhaengig
+   Bedingungen nicht erfuellen, werden ignoriert. Die restlichen Kanten werden sortiert, abhaengig
    davon, ob sie die letzte Bedingung erfuellen oder nicht. Gibt eine Liste mit zwei Sequenzen der
    ausgewaehlten Kanten [kanten_bedingung3_True, kanten_bedingung3_False] zurueck.
    

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-uebertragung.py   v0.5 (2020-12)
+uebertragung.py   v0.6 (2021-01)
 """
 
-# Copyright 2020 Dominik Zobel.
+# Copyright 2020-2021 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -403,20 +403,20 @@ def _ZustandsuebertragungOdbVorbereiten(dimensionen, odbknoten, odbelemente):
    # Deshalb wird ein labelsortiertes Dict erstellt, um von den Labels auf die dazugehoerigen
    # Indizes zuweisen zu koennen. Die Labels starten zusaetzlich bei 1 statt bei 0.
    knoten_pro_odbelement = len(odbelemente[0].connectivity);
-   label_zu_idx_odbknoten = ErstelleLabelsortierteGeomlist(geomliste=odbknoten);
+   listenhilfe_odbknoten = ErstelleLabelsortierteGeomlist(geomliste=odbknoten);
    mod_odbknoten = [0.0 for idx in range(int(dimensionen*len(odbknoten)))];
    for label_knoten in range(0, len(odbknoten)):
-      zielKnoten = odbknoten[label_zu_idx_odbknoten[label_knoten+1]];
+      zielKnoten = odbknoten[listenhilfe_odbknoten[label_knoten+1]];
       for achse in range(dimensionen):
          mod_odbknoten[dimensionen*label_knoten+achse] = zielKnoten.coordinates[achse];
    #
    DoubleArray_odbknoten = c_double * len(mod_odbknoten);
    cpp_odbknoten = DoubleArray_odbknoten(*list(mod_odbknoten));
    #
-   label_zu_idx_odbelemente = ErstelleLabelsortierteGeomlist(geomliste=odbelemente);
+   listenhilfe_odbelemente = ErstelleLabelsortierteGeomlist(geomliste=odbelemente);
    mod_odbelemente = [0 for idx in range(int(knoten_pro_odbelement*len(odbelemente)))];
    for label_elemente in range(len(odbelemente)):
-      zielElement = odbelemente[label_zu_idx_odbelemente[label_elemente+1]];
+      zielElement = odbelemente[listenhilfe_odbelemente[label_elemente+1]];
       for idx_eckpunkt in range(knoten_pro_odbelement):
          # Da im Folgenden die Indizes und nicht die Label betrachtet werden,
          # und die Labels mit 1 statt Null starten, ziehe Eins ab
@@ -593,7 +593,7 @@ def _ZustandsuebertragungErgebnisdateiSchreiben(ausgabedatei, mdbinstname, odber
          laenge_ausgabewerte = len(einzelergebnis.data);
    #
    if (not (einzelergebnis.elementLabel is None)):
-      elementlabel_zu_idx_output = ErstelleElementLabelsortierteGeomlist(geomliste=odbergebnisse);
+      listenhilfe_element = ErstelleElementLabelsortierteGeomlist(geomliste=odbergebnisse);
       with open(ausgabedatei, 'w') as ausgabe:
          for idx_elem, label_odbelem in enumerate(bezugsElemente):
             # Nur bearbeiten, wenn auch tatsaechlich ein Wert zugewiesen werden soll
@@ -604,7 +604,7 @@ def _ZustandsuebertragungErgebnisdateiSchreiben(ausgabedatei, mdbinstname, odber
             try:
                # Da die Anzahl an Elementen in mdb und odb i.d.R. nicht uebereinstimmen, sollen
                # alle mdbElemente ohne Ergebnisse uebersprungen werden.
-               zielElement = odbergebnisse[elementlabel_zu_idx_output[label_odbelem]];
+               zielElement = odbergebnisse[listenhilfe_element[label_odbelem]];
             except:
                continue;
             #
@@ -621,7 +621,7 @@ def _ZustandsuebertragungErgebnisdateiSchreiben(ausgabedatei, mdbinstname, odber
             ausgabe.write(BlockAusgabe(temp_ergebnis));
    #
    if (not (einzelergebnis.nodeLabel is None)):
-      nodelabel_zu_idx_output = ErstelleNodeLabelsortierteGeomlist(geomliste=odbergebnisse);
+      listenhilfe_node = ErstelleNodeLabelsortierteGeomlist(geomliste=odbergebnisse);
       with open(ausgabedatei, 'w') as ausgabe:
          for idx_knoten in range(len(mdbknoten)):
             nodeLabel = idx_knoten + 1; # Die Labels der mdb-Elemente sind immer sortiert
@@ -635,7 +635,7 @@ def _ZustandsuebertragungErgebnisdateiSchreiben(ausgabedatei, mdbinstname, odber
                try:
                   # Da die Anzahl an Knoten in mdb und odb i.d.R. nicht uebereinstimmen, sollen
                   # alle mdbKnoten ohne Ergebnisse uebersprungen werden.
-                  zielKnoten = odbergebnisse[nodelabel_zu_idx_output[labeltemp]];
+                  zielKnoten = odbergebnisse[listenhilfe_node[labeltemp]];
                except:
                   continue;
                #
