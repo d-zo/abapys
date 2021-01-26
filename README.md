@@ -1,5 +1,5 @@
 
-abapys 0.6.4
+abapys 0.6.5
 ============
 
 [abapys](https://github.com/d-zo/abapys) is a collection of special purpose Python functions 
