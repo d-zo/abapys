@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-bohrprofil.py   v1.6 (2020-12)
+bohrprofil.py   v1.7 (2021-01)
 """
 
 # Copyright 2020-2021 Dominik Zobel.
@@ -376,16 +376,51 @@ def Bohrprofil_VBP(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel, gi
 
 
 # -------------------------------------------------------------------------------------------------
+def _Rundwinkel_geometrie(zeichnung, spitzenlaenge, r_aussen, spitzenwinkel, rundwinkel):
+   """Erstelle in der uebergebenen zeichnung die Verbindung zwischen der Spitze eines Bohrprofils
+   (mit der Laenge spitzenlaenge) und dem Aussenradius (r_aussen) abhaengig vom gewaehlten
+   spitzenwinkel und rundwinkel.
+   """
+   import sketch
+   from abaqusConstants import CLOCKWISE
+   from math import tan
+   from hilfen import grad2rad, Log
+   from zeichnung import Linie, KreisbogenPunkte
+   #
+   if ((rundwinkel >= 90.0) or (rundwinkel < 0.0)):
+      Log('# Ungueltiger Wert fuer Rundwinkel (0 <= winkel < 90) - setze zu Null');
+      rundwinkel = 0.0;
+   #
+   # Ziehe zusaetzlich 1 Grad vom Maximalwert ab, damit ein gueltiges Mesh entstehen kann
+   # (der Winkel darf aber nicht kleiner als 0 sein).
+   max_rundwinkel = 90.0 - 2.0*abs(45.0-spitzenwinkel) - 1.0;
+   if (max_rundwinkel <= 0.0):
+      Log('# max. Rundwinkel ist 0.0');
+      rundwinkel = 0.0;
+   #
+   if (rundwinkel == 0.0):
+      Linie(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0));
+   else:
+      if (rundwinkel >= max_rundwinkel):
+         Log('# Rundwinkel zu gross - setze auf ' + str(max_rundwinkel));
+         rundwinkel = max_rundwinkel;
+      #
+      rundungsfaktor = 0.5/tan(0.5*rundwinkel*grad2rad);
+      KreisbogenPunkte(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0),
+         mittelpunkt=(0.5*r_aussen + rundungsfaktor*spitzenlaenge,
+                     -0.5*spitzenlaenge - rundungsfaktor*r_aussen), richtung=CLOCKWISE);
+#
+
+
+# -------------------------------------------------------------------------------------------------
 def _Bohrprofil_stange(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel):
    """Erstelle ein Stange mit der Bezeichnung name fuer Schraubprofil und Vollverdraengungsprofil.
    im modell mit den Parametern vom Vollverdraengungsprofil.
    """
    import sketch
    import part
-   from abaqusConstants import CLOCKWISE, THREE_D, DEFORMABLE_BODY, OFF
-   from math import tan
-   from hilfen import grad2rad, Log
-   from zeichnung import Linie, Linienzug, KreisbogenPunkte
+   from abaqusConstants import THREE_D, DEFORMABLE_BODY, OFF
+   from zeichnung import Linienzug
    #
    spitzenlaenge = _Bohrprofil_spitzenlaenge(breite=r_aussen, winkel=spitzenwinkel);
    #
@@ -394,22 +429,8 @@ def _Bohrprofil_stange(modell, name, laenge, r_aussen, spitzenwinkel, rundwinkel
    zeichnung.ConstructionLine(point1=(0.0, -laenge), point2=(0.0, laenge));
    zeichnung.FixedConstraint(entity=zeichnung.geometry.findAt((0.0, 0.0), ));
    #
-   if ((rundwinkel >= 90.0) or (rundwinkel < 0.0)):
-      Log('# Ungueltiger Wert fuer Rundwinkel (0 <= winkel < 90) - setze zu Null');
-      rundwinkel = 0.0;
-   #
-   if (rundwinkel == 0.0):
-      Linie(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0));
-   else:
-      max_rundwinkel = 90.0 - 2.0*abs(45.0-spitzenwinkel);
-      if (rundwinkel > max_rundwinkel):
-         Log('# Rundwinkel zu gross - setze auf max. zulaessigen Wert ' + str(max_rundwinkel));
-         rundwinkel = max_rundwinkel;
-      #
-      rundungsfaktor = 0.5/tan(0.5*rundwinkel*grad2rad);
-      KreisbogenPunkte(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_aussen, 0.0),
-         mittelpunkt=(0.5*r_aussen + rundungsfaktor*spitzenlaenge,
-                     -0.5*spitzenlaenge - rundungsfaktor*r_aussen), richtung=CLOCKWISE);
+   _Rundwinkel_geometrie(zeichnung=zeichnung, spitzenlaenge=spitzenlaenge, r_aussen=r_aussen,
+      spitzenwinkel=spitzenwinkel, rundwinkel=rundwinkel);
    #
    Linienzug(zeichnung=zeichnung, punkte=[
       (r_aussen, 0.0),
@@ -430,10 +451,8 @@ def _Bohrprofil_vvbpstange(modell, name, laenge, r_aussen, r_innen, spitzenwinke
    """
    import sketch
    import part
-   from abaqusConstants import CLOCKWISE, THREE_D, DEFORMABLE_BODY, OFF
-   from math import tan
-   from hilfen import grad2rad, Log
-   from zeichnung import Linie, Linienzug, KreisbogenPunkte
+   from abaqusConstants import THREE_D, DEFORMABLE_BODY, OFF
+   from zeichnung import Linienzug
    #
    spitzenlaenge = _Bohrprofil_spitzenlaenge(breite=r_innen, winkel=spitzenwinkel);
    #
@@ -442,22 +461,8 @@ def _Bohrprofil_vvbpstange(modell, name, laenge, r_aussen, r_innen, spitzenwinke
    zeichnung.ConstructionLine(point1=(0.0, -laenge), point2=(0.0, laenge));
    zeichnung.FixedConstraint(entity=zeichnung.geometry.findAt((0.0, 0.0), ));
    #
-   if ((rundwinkel >= 90.0) or (rundwinkel < 0.0)):
-      Log('# Ungueltiger Wert fuer Rundwinkel (0 <= winkel < 90) - setze zu Null');
-      rundwinkel = 0.0;
-   #
-   if (rundwinkel == 0.0):
-      Linie(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_innen, 0.0));
-   else:
-      max_rundwinkel = 90.0 - 2.0*abs(45.0-spitzenwinkel);
-      if (rundwinkel > max_rundwinkel):
-         Log('# Rundwinkel zu gross - setze auf max. zulaessigen Wert ' + str(max_rundwinkel));
-         rundwinkel = max_rundwinkel;
-      #
-      rundungsfaktor = 0.5/tan(0.5*rundwinkel*grad2rad);
-      KreisbogenPunkte(zeichnung=zeichnung, punkt1=(0.0, -spitzenlaenge), punkt2=(r_innen, 0.0),
-         mittelpunkt=(0.5*r_innen + rundungsfaktor*spitzenlaenge,
-                     -0.5*spitzenlaenge - rundungsfaktor*r_innen), richtung=CLOCKWISE);
+   _Rundwinkel_geometrie(zeichnung=zeichnung, spitzenlaenge=spitzenlaenge, r_aussen=r_aussen,
+      spitzenwinkel=spitzenwinkel, rundwinkel=rundwinkel);
    #
    Linienzug(zeichnung=zeichnung, punkte=[
       (r_innen, 0.0),
