@@ -10,7 +10,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.punktinelement</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>punktinelement.py&nbsp;&nbsp;&nbsp;v1.2&nbsp;(2020-09)</tt></p>
+    <p><tt>punktinelement.py&nbsp;&nbsp;&nbsp;v1.3&nbsp;(2021-01)</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -46,15 +46,15 @@ tun&nbsp;sollte):<br>
 &nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#<br>
 &nbsp;&nbsp;&nbsp;<br>
 Gibt&nbsp;das&nbsp;Volumen&nbsp;eines&nbsp;Elements&nbsp;zurueck.</tt></dd></dl>
- <dl><dt><a name="-KnotengewichtungInElement"><strong>KnotengewichtungInElement</strong></a>(element, referenzpunkt, knoten, label_zu_idx_punkte<font color="#909090">=[]</font>)</dt><dd><tt>Bestimmt&nbsp;die&nbsp;Anteile,&nbsp;die&nbsp;ein&nbsp;referenzpunkt&nbsp;aus&nbsp;den&nbsp;Knotenpunkten&nbsp;des&nbsp;in&nbsp;punkte&nbsp;definierten<br>
+ <dl><dt><a name="-KnotengewichtungInElement"><strong>KnotengewichtungInElement</strong></a>(element, referenzpunkt, knoten, listenhilfe<font color="#909090">=[]</font>)</dt><dd><tt>Bestimmt&nbsp;die&nbsp;Anteile,&nbsp;die&nbsp;ein&nbsp;referenzpunkt&nbsp;aus&nbsp;den&nbsp;Knotenpunkten&nbsp;des&nbsp;in&nbsp;punkte&nbsp;definierten<br>
 Elements&nbsp;hat.&nbsp;Die&nbsp;Koordinaten&nbsp;der&nbsp;Elemente&nbsp;muessen&nbsp;in&nbsp;knoten&nbsp;definiert&nbsp;sein.&nbsp;Die&nbsp;optionale<br>
 Uebergabe&nbsp;einer&nbsp;Zuordnung&nbsp;Listenhilfe&nbsp;von&nbsp;Labels&nbsp;zu&nbsp;Indizes&nbsp;beschleunigt&nbsp;den&nbsp;Vorgang.<br>
 Gibt&nbsp;[labelsEckpunkte,&nbsp;Knotengewichtung]&nbsp;zurueck.<br>
 &nbsp;<br>
 WICHTIG:&nbsp;Wenn&nbsp;Elemente&nbsp;einer&nbsp;mdb&nbsp;statt&nbsp;einer&nbsp;odb&nbsp;untersucht&nbsp;werden&nbsp;sollen,&nbsp;sollte&nbsp;entweder&nbsp;keine<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oder&nbsp;die&nbsp;folgende&nbsp;label_zu_idx_punkte&nbsp;uebergeben&nbsp;werden:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oder&nbsp;die&nbsp;folgende&nbsp;listenhilfe&nbsp;uebergeben&nbsp;werden:<br>
 &nbsp;<br>
-label_zu_idx_punkte&nbsp;=&nbsp;[idx&nbsp;for&nbsp;idx&nbsp;in&nbsp;range(len(knoten))];</tt></dd></dl>
+listenhilfe&nbsp;=&nbsp;[idx&nbsp;for&nbsp;idx&nbsp;in&nbsp;range(len(knoten))];</tt></dd></dl>
  <dl><dt><a name="-KnotengewichtungPunktInPunktkoordinaten"><strong>KnotengewichtungPunktInPunktkoordinaten</strong></a>(punkte, referenzpunkt, dimensionen)</dt><dd><tt>Bestimmt&nbsp;die&nbsp;Anteile,&nbsp;die&nbsp;ein&nbsp;referenzpunkt&nbsp;aus&nbsp;den&nbsp;Knotenpunkten&nbsp;des&nbsp;in&nbsp;punkte&nbsp;definierten<br>
 Elements&nbsp;hat.&nbsp;Abhaengig&nbsp;von&nbsp;dimensionen&nbsp;wird&nbsp;eine&nbsp;Flaeche&nbsp;(2D)&nbsp;oder&nbsp;ein&nbsp;Volumen&nbsp;(3D)&nbsp;als&nbsp;Referenz<br>
 betrachtet.&nbsp;Gibt&nbsp;gewichtung&nbsp;zurueck.<br>

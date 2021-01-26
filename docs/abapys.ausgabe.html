@@ -10,7 +10,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="abapys.html"><font color="#ffffff">abapys</font></a>.ausgabe</strong></big></big></font></td
 ><td align=right valign=bottom
 ></td></tr></table>
-    <p><tt>ausgabe.py&nbsp;&nbsp;&nbsp;v1.2&nbsp;(2020-10)</tt></p>
+    <p><tt>ausgabe.py&nbsp;&nbsp;&nbsp;v1.3&nbsp;(2021-01)</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
@@ -57,13 +57,13 @@ Front&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 Left&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iso&nbsp;&nbsp;&nbsp;&nbsp;|<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;--+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x<br>
 (rechts=3,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;(rechts=-3,&nbsp;oben=2)&nbsp;&nbsp;&nbsp;&nbsp;--nicht&nbsp;ohne&nbsp;zusaetzliche&nbsp;Drehung---</tt></dd></dl>
- <dl><dt><a name="-MultiBildSpeichern"><strong>MultiBildSpeichern</strong></a>(dateiname, session, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=[]</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Titel&nbsp;dateiname&nbsp;aus&nbsp;dem&nbsp;aktiven&nbsp;Viewport&nbsp;der&nbsp;Session&nbsp;session&nbsp;und&nbsp;odb<br>
+ <dl><dt><a name="-MultiBildSpeichern"><strong>MultiBildSpeichern</strong></a>(dateiname, session, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=None</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Titel&nbsp;dateiname&nbsp;aus&nbsp;dem&nbsp;aktiven&nbsp;Viewport&nbsp;der&nbsp;Session&nbsp;session&nbsp;und&nbsp;odb<br>
 namens&nbsp;odbname.&nbsp;Optional&nbsp;kann&nbsp;statt&nbsp;einem&nbsp;Bild&nbsp;mehrere&nbsp;Teilbilder&nbsp;nach&nbsp;der&nbsp;Anordnung&nbsp;anordnung<br>
 ausgegeben&nbsp;werden.&nbsp;Falls&nbsp;SINGLE&nbsp;und&nbsp;OVERLAY-Modus&nbsp;gespeichert&nbsp;werden&nbsp;sollen,&nbsp;kann&nbsp;mehrfachmodus<br>
 aktiviert&nbsp;werden.<br>
 Optional&nbsp;kann&nbsp;mit&nbsp;autozoom&nbsp;der&nbsp;Zoom&nbsp;innerhalb&nbsp;der&nbsp;Funktion&nbsp;abhaengig&nbsp;vom&nbsp;uebergebenen&nbsp;sichtbaren<br>
 Bereich&nbsp;und&nbsp;der&nbsp;Aufteilung&nbsp;in&nbsp;anordnung&nbsp;durchgefuehrt&nbsp;werden.</tt></dd></dl>
- <dl><dt><a name="-MultiVideobilderSpeichern"><strong>MultiVideobilderSpeichern</strong></a>(dateiname, session, odbname, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=[]</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Basisnamen&nbsp;dateiname&nbsp;aus&nbsp;der&nbsp;Ausgabedatei&nbsp;odbname,&nbsp;die&nbsp;im&nbsp;aktiven<br>
+ <dl><dt><a name="-MultiVideobilderSpeichern"><strong>MultiVideobilderSpeichern</strong></a>(dateiname, session, odbname, anordnung<font color="#909090">=[1, 1]</font>, zeitstempel<font color="#909090">=None</font>, zeitstempelkanal<font color="#909090">=0</font>, legendenkanal<font color="#909090">=0</font>, mehrfachmodus<font color="#909090">=False</font>, autozoom<font color="#909090">=False</font>)</dt><dd><tt>Speichere&nbsp;Dateien&nbsp;mit&nbsp;dem&nbsp;Basisnamen&nbsp;dateiname&nbsp;aus&nbsp;der&nbsp;Ausgabedatei&nbsp;odbname,&nbsp;die&nbsp;im&nbsp;aktiven<br>
 Viewport&nbsp;der&nbsp;session&nbsp;dargestellt&nbsp;ist.&nbsp;Optional&nbsp;koennen&nbsp;statt&nbsp;einem&nbsp;Bild&nbsp;mehrere&nbsp;Teilbilder&nbsp;in&nbsp;der<br>
 gegebenen&nbsp;anordnung&nbsp;(Teilbilder&nbsp;horizontal&nbsp;und&nbsp;vertikal)&nbsp;ausgegeben&nbsp;werden.&nbsp;Optional&nbsp;kann<br>
 ausserdem&nbsp;ein&nbsp;zeitstempel&nbsp;uebergeben&nbsp;werden,&nbsp;der&nbsp;nur&nbsp;im&nbsp;Teilbild&nbsp;zeitstempelkanal&nbsp;angezeigt&nbsp;wird.<br>

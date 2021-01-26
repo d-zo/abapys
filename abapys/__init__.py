@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
        .-.
-       | |  v0.6.4
+       | |  v0.6.5
    _  _| | _   _  _ _  _  _   _____
     `' | '  `.  `' | '  `| | / /  _|
  | ()  |  () | ()  |  () | |/ /\_ `.
@@ -48,5 +48,5 @@ from hilfen import *
 
 
 __author__ = 'Dominik Zobel';
-__version__ = '0.6.4';
+__version__ = '0.6.5';
 __package__ = 'abapys';
