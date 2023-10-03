@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-ausgabe.py   v1.3 (2021-01)
+ausgabe.py   v1.4 (2023-02)
 """
 
 # Copyright 2020-2021 Dominik Zobel.
@@ -106,9 +106,11 @@ def Ueberlagerung(session, ebenen, versteckteSets=[], versteckteInstances=[], ve
    """
    import visualization
    import displayGroupOdbToolset as myodbtoolset
-   from abaqusConstants import OVERLAY, CURRENT
+   from abaqusConstants import SINGLE, OVERLAY, CURRENT
    #
    viewport = session.viewports[session.currentViewportName];
+   # Zum Loeschen aller Ebenen muss displayMode gleich SINGLE sein
+   viewport.setValues(displayMode=SINGLE);
    for idxEbene, aktuellerEbenenname in enumerate(ebenen):
       if (viewport.layers.has_key(aktuellerEbenenname)):
          del viewport.layers[aktuellerEbenenname];
@@ -1306,8 +1308,8 @@ def DehnungsInvarianteAlsFieldOutput(name, session, odbname, beschreibung='Dehun
    """
    SkalarenFieldOutputErstellen(name=name, beschreibung=beschreibung, session=session,
       odbname=odbname, referenzAusgabe='ER',
-      bedingung='sqrt(4.0/9.0*(data11**2 + data22**2 + data33**2 - data11*data22 - data11*data33 - data22*data33) + 2.0*(data12**2 + data13**2 + data23**2))');
-   # siehe dazu auch D. Kolymbas (2011): Geotechnik, S. 251
+      bedingung='sqrt(4.0/9.0*(data11**2 + data22**2 + data33**2 - data11*data22 - data11*data33 - data22*data33) + 4.0/3.0*(data12**2 + data13**2 + data23**2))');
+   # modifiziert nach D. Kolymbas (2011): Geotechnik, S. 251
 #
 
 

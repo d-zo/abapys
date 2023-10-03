@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 """
        .-.
-       | |  v0.6.5
+       | |  v0.6.6
    _  _| | _   _  _ _  _  _   _____
     `' | '  `.  `' | '  `| | / /  _|
  | ()  |  () | ()  |  () | |/ /\_ `.
  .     |     .     |     | ' /  _) )
   \_,|_|_|\_/ \_,|_| |\_,|  /  |___/
                    | |   / /
- D.Zobel 2017-2021 |_|  /_/
+ D.Zobel 2017-2023 |_|  /_/
 
 Abaqus-Python Skriptsammlung
 """
 
-# Copyright 2020-2021 Dominik Zobel.
+# Copyright 2020-2023 Dominik Zobel.
 # All rights reserved.
 #
 # This file is part of the abapys library.
@@ -48,5 +48,5 @@ from hilfen import *
 
 
 __author__ = 'Dominik Zobel';
-__version__ = '0.6.5';
+__version__ = '0.6.6';
 __package__ = 'abapys';

@@ -1,5 +1,5 @@
 
-abapys 0.6.5
+abapys 0.6.6
 ============
 
 [abapys](https://github.com/d-zo/abapys) is a collection of special purpose Python functions 
@@ -11,6 +11,8 @@ at the Hamburg University of Technology.
 Therefore it is centered around model creation and output processing for simulations of
 soil samples and soil-structure interaction.
 All functions were tested for Abaqus versions between 6.14-2 (2015) and Abaqus 2020.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4467987.svg)](https://doi.org/10.5281/zenodo.4467987)
 
 
 
@@ -48,6 +50,7 @@ abapys/
    |      +- beautify.py
    |      + ...
    |
+   +- Materialdatenbank_20####.xlsx
    +- gewichtung.dll
    +- gewichtung.so
    |

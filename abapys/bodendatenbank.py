@@ -79,16 +79,11 @@ def _Bodenparameter_Aus_Tabelle(name, bezeichnung='labor'):
             standardwerte[iZelle] = zeile[iZelle].value;
       #
       if (str(zeile_bodenname) == name):
-         zeile_bezeichnung = zeile[1].value;
-         if ((str(zeile_bezeichnung) == bezeichnung) or
-            (((bezeichnung == 'labor') or (bezeichnung == '')) and
-            ((zeile_bezeichnung is None) or (zeile_bezeichnung == 'labor')))):
-            #
-            eintragVorhanden = True;
-            for iZelle in range(anzahlZellen):
-               bodenwerte[iZelle] = zeile[iZelle].value;
-            #
-            break;
+         eintragVorhanden = True;
+         for iZelle in range(anzahlZellen):
+            bodenwerte[iZelle] = zeile[iZelle].value;
+         #
+         break;
    #
    return [eintragVorhanden, bodenwerte, standardwerte];
 #
@@ -117,46 +112,48 @@ def Bodenparameter(name, stoffgesetz, bezeichnung='labor'):
          bodenwerte[iWert] = standardwerte[iWert];
    #
    idx_basis = 3;
-   idx_hypo = 8;
-   idx_visco = 16;
-   idx_erw = 24;
-   idx_mc = 30;
+   idx_hypo = 9;
+   idx_visco = 17;
+   idx_erw = 25;
+   idx_mc = 31;
    #
    stoffgesetz_klein = stoffgesetz.lower();
-   basisparameter = bodenwerte[idx_basis:idx_basis+2] + [grad2rad*bodenwerte[idx_basis+2]];
+   basisparameter = bodenwerte[idx_basis:idx_basis+3] + [grad2rad*bodenwerte[idx_basis+3]];
    if   ((stoffgesetz_klein == 'elastisch') or (stoffgesetz_klein == 'elastic')):
       parameter = basisparameter +   bodenwerte[idx_mc:idx_mc+2];
-      #           0: min. Dichte     3: E-Modul
-      #           1: max. Dichte     4: Querdehnzahl
-      #           2: krit.Reibwinkel 
+      #           0: Korndichte      4: E-Modul
+      #           1: min. Dichte     5: Querdehnzahl
+      #           2: max. Dichte    
+      #           3: krit.Reibwinkel
    #
    elif (stoffgesetz_klein == 'mohr-coulomb'):
-      parameter = basisparameter   + bodenwerte[idx_mc:idx_mc+2] + [bodenwerte[idx_basis+2]] + bodenwerte[idx_mc+2:idx_mc+5];
-      #           0: min. Dichte     3: E-Modul                    5: Reibungswert             6: Dilatanzwinkel
-      #           1: max. Dichte     4: Querdehnzahl                                           7: Koh.-Fliessspg.
-      #           2: krit.Reibwinkel                                                           8: Plast.Dehnung
+      parameter = basisparameter   + bodenwerte[idx_mc:idx_mc+2] + [bodenwerte[idx_basis+3]] + bodenwerte[idx_mc+2:idx_mc+5];
+      #           0: Korndichte      4: E-Modul                    6: Reibungswert             7: Dilatanzwinkel
+      #           1: min. Dichte     5: Querdehnzahl                                           8: Koh.-Fliessspg.
+      #           2: max. Dichte                                                               9: Plast.Dehnung
+      #           3: krit.Reibwinkel
    #
    elif (('viskohypoplasti' in stoffgesetz_klein) or ('viscohypoplasti' in stoffgesetz_klein)):
-      #           0: min. Dichte    3: 100-Porenzahl          4: Querdehnzahl          5: Kompr-Beiwert                      9: Ref.-Dehnung
-      #           1: max. Dichte                                                       6: Schwellbeiwert
-      #           2: krit.Reibwinkel                                                   7: Belast.-Flaeche
-      #                                                                                8: I_v
+      #           0: Korndichte     4: 100-Porenzahl          5: Querdehnzahl          6: Kompr-Beiwert                      10: Ref.-Dehnung
+      #           1: min. Dichte                                                       7: Schwellbeiwert
+      #           2: max. Dichte                                                       8: Belast.-Flaeche
+      #           3: krit.Reibwinkel                                                   9: I_v
       parameter = basisparameter +  [bodenwerte[idx_visco]] + [bodenwerte[idx_mc+1]] + bodenwerte[idx_visco+1:idx_visco+5] + [0.000001*bodenwerte[idx_visco+5]] + \
          [0.0]   +   bodenwerte[idx_erw:idx_erw+2] + [0.000001*bodenwerte[idx_erw+2]] + bodenwerte[idx_erw+3:idx_erw+5] + [bodenwerte[idx_visco+6]];
-      #  10: [leer]  11: Faktor m_T                  13: Konstante R_max                14: Exponent alpha                16: Ueberkons-grad
-      #              12: Faktor m_R                                                     15: Exponent beta
+      #  11: [leer]  12: Faktor m_T                  14: Konstante R_max                15: Exponent alpha                16: Ueberkons-grad
+      #              13: Faktor m_R                                                     16: Exponent beta
    #
    elif ('hypoplasti' in stoffgesetz_klein):
-      #           0: min. Dichte    3: Querdehnzahl          4: Granulathaerte             5: Exponent n
-      #           1: max. Dichte                                                           6: dicht.Porenzahl
-      #           2: krit.Reibwinkel                                                       7: lock.Porenzahl
-      #                                                                                    8: krit.Porenzahl
-      #                                                                                    9: Exponent alpha
-      #                                                                                    10: Exponent beta
+      #           0: Korndichte     4: Querdehnzahl          5: Granulathaerte             6: Exponent n
+      #           1: min. Dichte                                                           7: dicht.Porenzahl
+      #           2: max. Dichte                                                           8: lock.Porenzahl
+      #           3: krit.Reibwinkel                                                       9: krit.Porenzahl
+      #                                                                                    10: Exponent alpha
+      #                                                                                    11: Exponent beta
       parameter = basisparameter +  [bodenwerte[idx_mc+1]] + [1000*bodenwerte[idx_hypo]] + bodenwerte[idx_hypo+1:idx_hypo+7] + \
          bodenwerte[idx_erw:idx_erw+2] + [0.000001*bodenwerte[idx_erw+2]] + bodenwerte[idx_erw+3:idx_erw+5];
-      #  11: Faktor m_T                  13: Konstante R_max                14: Exponent beta_R
-      #  12: Faktor m_R                                                     15: Exponent chi
+      #  12: Faktor m_T                  14: Konstante R_max                15: Exponent beta_R
+      #  13: Faktor m_R                                                     16: Exponent chi
    #
    else:
       parameter = None;
@@ -168,18 +165,18 @@ def Bodenparameter(name, stoffgesetz, bezeichnung='labor'):
    if ('stdig' in stoffgesetz_klein):
       # "Standardwerte" der erweiterten hypoplastischen Parameter
       #
-      #                  Faktor    Faktor    Konstante   Exponent     Exponent
-      #                  m_T [-]   m_R [-]   R_max [-]   beta_R [-]   chi [-]
-      #                |---------|---------|-----------|------------|----------|
-      parameter[11:16] = [ 2.0,      5.0,      1e-4,       0.5,         5.0      ];
+      #                    Faktor    Faktor    Konstante   Exponent     Exponent
+      #                    m_T [-]   m_R [-]   R_max [-]   beta_R [-]   chi [-]
+      #                  |---------|---------|-----------|------------|----------|
+      parameter[12:17] = [ 2.0,      5.0,      1e-4,       0.5,         5.0      ];
    #
    if ('ohneig' in stoffgesetz_klein):
       # "Deaktivierung" der erweiterten hypoplastischen Parameter durch m_T und m_R < 2.0
       #
-      #                  Faktor    Faktor    Konstante   Exponent     Exponent
-      #                  m_T [-]   m_R [-]   R_max [-]   beta_R [-]   chi [-]
-      #                |---------|---------|-----------|------------|----------|
-      parameter[11:16] = [ 1.0,      1.0,      1.0,        1.0,         1.0      ];
+      #                    Faktor    Faktor    Konstante   Exponent     Exponent
+      #                    m_T [-]   m_R [-]   R_max [-]   beta_R [-]   chi [-]
+      #                  |---------|---------|-----------|------------|----------|
+      parameter[12:17] = [ 1.0,      1.0,      1.0,        1.0,         1.0      ];
    #
    return parameter;
 #

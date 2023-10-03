@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-boden.py   v2.0 (2020-12)
+boden.py   v2.1 (2023-02)
 """
 
 # Copyright 2020-2021 Dominik Zobel.
@@ -984,7 +984,6 @@ def BodenmaterialUndSectionErstellen(modell, verwendeteMaterialien, verfuegbareM
       if (not neuesMaterial):
          continue;
       #
-      korndichte = 2.65; # t/m^3   Korndichte
       dichte_wasser = 1.0; # t/m^3
       tempBodenparameter = Bodenparameter(name=dbbodenname, stoffgesetz=stoffgesetz,
          bezeichnung=dbbodenbez);
@@ -992,7 +991,7 @@ def BodenmaterialUndSectionErstellen(modell, verwendeteMaterialien, verfuegbareM
          Log('# Abbruch: Fehler beim Laden der Materialdaten');
          return [None, None];
       #
-      mindichte, maxdichte, kritReibwinkel = tempBodenparameter[0:3];
+      korndichte, mindichte, maxdichte, kritReibwinkel = tempBodenparameter[0:4];
       #
       trockendichte = mindichte + verdichtungsgrad*(maxdichte-mindichte);
       aktuelleporenzahl = korndichte/trockendichte - 1.0;
@@ -1012,12 +1011,12 @@ def BodenmaterialUndSectionErstellen(modell, verwendeteMaterialien, verfuegbareM
          stoffgesetz = stoffgesetz[:-7];
       #
       if   (stoffgesetz == 'Elastisch'):
-         tempBoden.Elastic(table=((tempBodenparameter[3], tempBodenparameter[4]), ));
+         tempBoden.Elastic(table=((tempBodenparameter[4], tempBodenparameter[5]), ));
       elif (stoffgesetz == 'Mohr-Coulomb'):
-         tempBoden.Elastic(table=((tempBodenparameter[3], tempBodenparameter[4]), ));
-         tempBoden.MohrCoulombPlasticity(table=((tempBodenparameter[5], tempBodenparameter[6]), ));
+         tempBoden.Elastic(table=((tempBodenparameter[4], tempBodenparameter[5]), ));
+         tempBoden.MohrCoulombPlasticity(table=((tempBodenparameter[6], tempBodenparameter[7]), ));
          tempBoden.mohrCoulombPlasticity.MohrCoulombHardening(
-            table=((tempBodenparameter[7], tempBodenparameter[8]), ));
+            table=((tempBodenparameter[8], tempBodenparameter[9]), ));
          tempBoden.mohrCoulombPlasticity.TensionCutOff(
             dependencies=0, table=((0.0, 0.0), ), temperatureDependency=OFF);
       elif (stoffgesetz == 'Hypoplastisch'):
@@ -1025,15 +1024,15 @@ def BodenmaterialUndSectionErstellen(modell, verwendeteMaterialien, verfuegbareM
          # Fuer die visco_hypo-Routinen ist die Anfangsporenzahl an 15. Stelle (und 16. egal),
          # bei den anderen an der 16. Stelle (und 15. egal)
          if (userroutine[0:5] == 'visco'):
-            tempBoden_hp = tuple(tempBodenparameter[2:] + [aktuelleporenzahl, 0.0]);
+            tempBoden_hp = tuple(tempBodenparameter[3:] + [aktuelleporenzahl, 0.0]);
          else:
-            tempBoden_hp = tuple(tempBodenparameter[2:] + [0.0, aktuelleporenzahl]);
+            tempBoden_hp = tuple(tempBodenparameter[3:] + [0.0, aktuelleporenzahl]);
          #
          tempBoden.Depvar(n=numDepVar);
          tempBoden.UserMaterial(mechanicalConstants=tempBoden_hp);
       elif (stoffgesetz == 'Viskohypoplastisch'):
          benoetigtUserroutine = True;
-         tempBoden_hp = tuple(tempBodenparameter[3:10] + tempBodenparameter[2:3] + tempBodenparameter[10:] + [0.0]);
+         tempBoden_hp = tuple(tempBodenparameter[4:11] + tempBodenparameter[3:4] + tempBodenparameter[11:] + [0.0]);
          tempBoden.Depvar(n=numDepVar);
          tempBoden.UserMaterial(mechanicalConstants=tempBoden_hp);
       #
